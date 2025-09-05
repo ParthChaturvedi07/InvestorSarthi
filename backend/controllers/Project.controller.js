@@ -1,5 +1,6 @@
 import Project from "../models/Project.js";
 import { uploadToCloudinary } from "../utils/upload.js";
+import { v2 as cloudinary } from "cloudinary";
 
 // @desc    Create a new project
 // @route   POST /api/projects
@@ -70,7 +71,43 @@ export const uploadProjectImages = async (req, res) => {
     project.gallery.push(...urls);
     await project.save();
 
-    res.json({ message: "Images uploaded successfully", gallery: project.gallery });
+    res.json({
+      message: "Images uploaded successfully",
+      gallery: project.gallery,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// @desc    Remove an image from gallery
+// @route   DELETE /api/projects/:id/gallery
+// @access  Private (admin only)
+export const removeProjectImage = async (req, res) => {
+  try {
+    const { id } = req.params; // project ID
+    const { imageUrl } = req.body; // URL of the image to delete
+
+    const project = await Project.findById(id);
+    if (!project) return res.status(404).json({ message: "Project not found" });
+
+    // Check if image exists in gallery
+    if (!project.gallery.includes(imageUrl)) {
+      return res.status(400).json({ message: "Image not found in gallery" });
+    }
+
+    // Remove image from gallery
+    project.gallery = project.gallery.filter((img) => img !== imageUrl);
+    await project.save();
+
+    // Extract public_id from URL (everything after /projects/ and before extension)
+    const publicId = imageUrl.split("/projects/")[1].split(".")[0];
+    await cloudinary.uploader.destroy(`projects/${publicId}`);
+
+    res.json({
+      message: "Image removed successfully",
+      gallery: project.gallery,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

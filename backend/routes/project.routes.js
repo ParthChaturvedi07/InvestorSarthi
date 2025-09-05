@@ -4,11 +4,15 @@ import {
   getProjects,
   getProjectById,
   uploadProjectImages,
+  removeProjectImage,
   updateProject,
   deleteProject,
 } from "../controllers/Project.controller.js";
 import { authUser } from "../middlewares/authMiddleware.js";
-import { validateProject, validateProjectUpdate } from "../validators/projectValidator.js";
+import {
+  validateProject,
+  validateProjectUpdate,
+} from "../validators/projectValidator.js";
 import { upload } from "../utils/upload.js";
 
 const router = express.Router();
@@ -26,8 +30,9 @@ router.delete("/:id", authUser, deleteProject);
 router.post(
   "/:id/gallery",
   authUser,
-  upload.array("images", 4), 
+  upload.array("images", 4),
   uploadProjectImages
 );
+router.delete("/:id/gallery", authUser, removeProjectImage);
 
 export default router;

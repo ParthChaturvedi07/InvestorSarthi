@@ -22,7 +22,6 @@ app.use(
   })
 );
 
-// If behind a proxy and using secure cookies:
 app.set("trust proxy", 1);
 
 app.use(
