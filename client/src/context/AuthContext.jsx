@@ -1,6 +1,4 @@
-// src/context/AuthContext.js
-import React from "react";
-import { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import {
   getProfile,
   loginUser,
@@ -14,13 +12,20 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Fetch user profile on app load
   useEffect(() => {
     const fetchProfile = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setLoading(false);
+        return;
+      }
       try {
         const { data } = await getProfile();
         setUser(data);
+        console.log(data);
       } catch {
-        setUser(null);
+        localStorage.removeItem("token");
       } finally {
         setLoading(false);
       }
@@ -31,14 +36,28 @@ export const AuthProvider = ({ children }) => {
   const login = async (credentials) => {
     const { data } = await loginUser(credentials);
     localStorage.setItem("token", data.token);
-    setUser(data.user);
-    return data;
-  };
 
+    // If API does not return user, fetch profile
+    let userData;
+    if (data.user) {
+      userData = data.user;
+    } else {
+      const profileResponse = await getProfile();
+      userData = profileResponse.data;
+    }
+
+    setUser(userData);
+    return { token: data.token, user: userData };
+  };
   const register = async (userData) => {
     const { data } = await registerUser(userData);
     localStorage.setItem("token", data.token);
-    setUser(data.user);
+
+    let registeredUserData;
+    if (data.user) {
+      registeredUserData = data.user;
+    }
+    setUser(registeredUserData);
     return data;
   };
 

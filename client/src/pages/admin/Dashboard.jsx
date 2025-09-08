@@ -22,7 +22,7 @@ const Toast = ({ message, type = "success", onClose }) => {
 };
 
 export const Dashboard = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, loading } = useAuth();
   const navigate = useNavigate();
   const [toast, setToast] = useState(null);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
@@ -33,6 +33,12 @@ export const Dashboard = () => {
     const timer = setInterval(() => setCurrentTime(new Date()), 60000);
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    if (!loading && !user) {
+      navigate("/@dmin-panel/login", { replace: true });
+    }
+  }, [loading, navigate]);
 
   const handleLogout = async () => {
     setIsLoggingOut(true);
@@ -53,6 +59,15 @@ export const Dashboard = () => {
     if (hour < 17) return "Good Afternoon";
     return "Good evening";
   };
+
+  if (loading || !user) {
+   
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        Loading...
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">

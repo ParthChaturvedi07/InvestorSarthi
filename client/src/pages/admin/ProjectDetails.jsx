@@ -193,6 +193,13 @@ export const ProjectDetails = () => {
     isOpen: false,
     currentIndex: 0,
   });
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/@dmin-panel/login");
+    }
+  }, [token, navigate]);
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -787,7 +794,7 @@ export const ProjectDetails = () => {
         )}
 
         {/* Location Map */}
-        {project.locationMap && (
+        {project.location && (
           <div className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg border border-white/20">
             <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center space-x-3">
               <svg
@@ -808,12 +815,13 @@ export const ProjectDetails = () => {
 
             <div className="relative overflow-hidden rounded-2xl shadow-lg">
               <iframe
-                src={project.locationMap}
-                title="Location Map"
-                className="w-full h-96 border-0"
+                src={`https://www.google.com/maps/embed/v1/place?key=${
+                  import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+                }&q=${encodeURIComponent(project.location)}`}
                 allowFullScreen
                 loading="lazy"
-                style={{ filter: "contrast(1.1) saturate(1.1)" }}
+                className="w-full h-96 border-0 rounded-xl"
+                title="Location Map"
               ></iframe>
               <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/10 to-transparent"></div>
             </div>
@@ -847,7 +855,7 @@ export const ProjectDetails = () => {
           </button>
 
           <button
-            onClick={() => navigate("/@dmin-panel/projects")}
+            onClick={() => navigate("/admin-dashboard")}
             className="bg-white/80 backdrop-blur-sm text-slate-700 px-8 py-4 rounded-xl hover:bg-white/90 transition-all duration-200 transform hover:scale-105 shadow-lg font-medium border border-white/20"
           >
             <div className="flex items-center justify-center space-x-2">

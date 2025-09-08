@@ -172,6 +172,14 @@ export const ProjectEdit = () => {
   const [uploading, setUploading] = useState(false);
   const [activeTab, setActiveTab] = useState("basic");
 
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/@dmin-panel/login");
+    }
+  }, [token, navigate]);
+
   // Fetch project on mount
   useEffect(() => {
     const fetchProject = async () => {
