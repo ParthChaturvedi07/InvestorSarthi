@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+// import { Helmet } from "react-helmet-async";
 
 // Toast Component
 const Toast = ({ message, type = "error", onClose }) => {
@@ -84,13 +84,13 @@ export const AdminLogin = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-4">
-      <Helmet>
+      {/* <Helmet> */}
         <title>Login - Admin Dashboard</title>
         <meta
           name="description"
           content="Login to access the Real Estate Admin Dashboard."
         />
-      </Helmet>
+      {/* </Helmet> */}
 
       {toast && (
         <Toast message={toast.message} type={toast.type} onClose={hideToast} />

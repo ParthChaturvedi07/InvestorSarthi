@@ -6,9 +6,11 @@ import { Dashboard } from "../pages/admin/Dashboard";
 import { ProjectDetails } from "../pages/admin/ProjectDetails";
 import { ProjectEdit } from "../pages/admin/ProjectEdit";
 import { ProjectForm } from "../pages/admin/ProjectForm";
+import Home from "../pages/static/Home";
 export default function AppRoutes() {
   return (
     <Routes>
+      {/* Admin Pages */}
       <Route path="/@dmin-panel/register" element={<AdminRegister />} />
       <Route path="/@dmin-panel/login" element={<AdminLogin />} />
       <Route path="/admin-dashboard" element={<Dashboard />} />
@@ -17,6 +19,10 @@ export default function AppRoutes() {
       <Route path="/@dmin-panel/projects/create" element={<ProjectForm />} />
       <Route path="/@dmin-panel/projects/:id" element={<ProjectDetails />} />
       <Route path="/@dmin-panel/projects/:id/edit" element={<ProjectEdit />} />
+
+      {/* Public Static Pages */}
+      <Route path="/" element={<Home />} />
+      
     </Routes>
   );
 }

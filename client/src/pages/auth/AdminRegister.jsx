@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+// import { Helmet } from "react-helmet-async";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -87,13 +87,13 @@ export const AdminRegister = () => {
 
   return (
     <div className="h-screen w-full flex items-center justify-center py-10 px-4 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      <Helmet>
+      {/* <Helmet> */}
         <title>Register - Admin Dashboard</title>
         <meta
           name="description"
           content="Register to access the Real Estate Admin Dashboard."
         />
-      </Helmet>
+      {/* </Helmet> */}
 
       {toast && (
         <Toast message={toast.message} type={toast.type} onClose={hideToast} />
