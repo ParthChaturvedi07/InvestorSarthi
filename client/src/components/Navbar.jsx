@@ -57,7 +57,7 @@ const Navbar = () => {
       </div>
 
       {/* Mobile menu (optional) */}
-      <div className="md:hidden text-white">☰</div>
+      <div className="md:hidden text-black">☰</div>
     </motion.nav>
   );
 };

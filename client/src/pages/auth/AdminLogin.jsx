@@ -227,15 +227,6 @@ export const AdminLogin = () => {
               </div>
             </div>
 
-            <div className="flex items-center justify-end">
-              <a
-                href="/@dmin-panel/forgot-password"
-                className="text-sm text-blue-600 hover:text-blue-700 transition-colors duration-200 hover:underline"
-              >
-                Forgot password?
-              </a>
-            </div>
-
             <button
               type="submit"
               disabled={isLoading}

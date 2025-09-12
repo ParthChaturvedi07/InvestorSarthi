@@ -36,7 +36,7 @@ export const Dashboard = () => {
 
   useEffect(() => {
     if (!loading && !user) {
-      navigate("/@dmin-panel/login", { replace: true });
+      navigate("/", { replace: true });
     }
   }, [loading, navigate]);
 

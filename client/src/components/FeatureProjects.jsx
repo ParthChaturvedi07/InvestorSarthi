@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getProjects } from "../api/projectApi";
 import { motion } from "framer-motion";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,50 +15,19 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 const FeaturedProjects = () => {
-  const projects = [
-    {
-      src: "/images/projects/investorSarthi.png",
-      title: "Investor Sarthi",
-      description: "AI-powered financial planning tool.",
-      link: "https://yourprojectlink.com",
-    },
-    {
-      src: "/images/projects/portfolio.png",
-      title: "Personal Portfolio",
-      description: "Showcasing my work and journey.",
-      link: "https://yourportfolio.com",
-    },
-    {
-      src: "/images/projects/startupApp.png",
-      title: "Startup App",
-      description: "A SaaS app for early-stage startups.",
-      link: "https://yourstartup.com",
-    },
-    {
-      src: "/images/projects/startupApp.png",
-      title: "Startup App",
-      description: "A SaaS app for early-stage startups.",
-      link: "https://yourstartup.com",
-    },
-    {
-      src: "/images/projects/startupApp.png",
-      title: "Startup App",
-      description: "A SaaS app for early-stage startups.",
-      link: "https://yourstartup.com",
-    },
-    {
-      src: "/images/projects/startupApp.png",
-      title: "Startup App",
-      description: "A SaaS app for early-stage startups.",
-      link: "https://yourstartup.com",
-    },
-    {
-      src: "/images/projects/startupApp.png",
-      title: "Startup App",
-      description: "A SaaS app for early-stage startups.",
-      link: "https://yourstartup.com",
-    },
-];
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const { data } = await getProjects();
+        setProjects(data);
+      } catch (error) {
+        console.error("Failed to fetch projects:", error);
+      }
+    };
+    fetchProjects();
+  }, []);
 
   const css = `
     .CarouselProjects {
@@ -113,15 +83,21 @@ const FeaturedProjects = () => {
               key={index}
               className="rounded-2xl shadow-lg overflow-hidden bg-white"
             >
-              <a href={project.link} target="_blank" rel="noopener noreferrer">
+              <a
+                href={project.link || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   className="h-56 w-full object-cover"
-                  src={project.src}
+                  src={project.gallery?.[0] || "/images/projects/default.png"}
                   alt={project.title}
                 />
                 <div className="p-4">
                   <h3 className="text-lg font-bold">{project.title}</h3>
-                  <p className="text-sm text-gray-600">{project.description}</p>
+                  <p className="text-sm text-gray-600">
+                    {project.description || project.overview}
+                  </p>
                 </div>
               </a>
             </SwiperSlide>
