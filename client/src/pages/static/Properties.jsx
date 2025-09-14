@@ -182,7 +182,7 @@ const Properties = () => {
 
                     {/* View Button */}
                     <button
-                      onClick={() => navigate(`/projects/${property._id}`)}
+                      onClick={() => navigate(`/property-details/${property._id}`)}
                       className="mt-4 bg-black text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-800 transition"
                     >
                       View Details

@@ -13,6 +13,7 @@ import LoanAssistance from "../pages/static/LoanAssistance";
 import PropertyConsultation from "../pages/static/PropertyConsultation";
 import InvestmentAdvisory from "../pages/static/InvestmentAdvisory";
 import SiteVisits from "../pages/static/SiteVisits";
+import PropertyDetails from "../pages/static/PropertyDetails";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -29,6 +30,7 @@ export default function AppRoutes() {
       {/* Public Static Pages */}
       <Route path="/" element={<Home />} />
       <Route path="/properties" element={<Properties />} />
+      <Route path="/property-details/:id" element={<PropertyDetails />} />
       <Route path="/careers" element={<Careers />} />
       <Route path="/loan-assistance" element={<LoanAssistance />} />
       <Route path="/property-consultation" element={<PropertyConsultation />} />

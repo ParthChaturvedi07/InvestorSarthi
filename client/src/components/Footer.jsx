@@ -28,11 +28,31 @@ const Footer = () => {
         <div>
           <h3 className="text-base font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2 text-gray-400 text-sm">
-            <li><a href="#home" className="hover:text-white transition">Home</a></li>
-            <li><a href="#properties" className="hover:text-white transition">Properties</a></li>
-            <li><a href="#testimonials" className="hover:text-white transition">Testimonials</a></li>
-            <li><a href="#about" className="hover:text-white transition">About Us</a></li>
-            <li><a href="#contact" className="hover:text-white transition">Contact</a></li>
+            <li>
+              <a href="#home" className="hover:text-white transition">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="#properties" className="hover:text-white transition">
+                Properties
+              </a>
+            </li>
+            <li>
+              <a href="#testimonials" className="hover:text-white transition">
+                Testimonials
+              </a>
+            </li>
+            <li>
+              <a href="#about" className="hover:text-white transition">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="#contact" className="hover:text-white transition">
+                Contact
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -46,12 +66,11 @@ const Footer = () => {
             </li>
             <li className="flex items-center gap-2">
               <FaEnvelope className="text-white" />
-              <span>isarthi@gmail.com</span>
+              <span>contact@investorsaarthi.com</span>
             </li>
             <li>
               <p className="text-gray-400 leading-relaxed">
-                DLF Cyber City, Tower 5<br />
-                Gurugram, Haryana, India
+                Investor Saarthi, <br />D Mall, 2nd floor, Indirapuram
               </p>
             </li>
           </ul>
@@ -91,7 +110,8 @@ const Footer = () => {
 
       {/* Divider */}
       <div className="border-t border-gray-800 mt-8 pt-5 text-center text-gray-500 text-xs">
-        © {new Date().getFullYear()} Investor Saarthi. All Rights Reserved. | Crafted with ❤️
+        © {new Date().getFullYear()} Investor Saarthi. All Rights Reserved. |
+        Crafted with ❤️
       </div>
     </footer>
   );

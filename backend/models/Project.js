@@ -21,7 +21,7 @@ const projectSchema = new mongoose.Schema(
       type: [String],
       validate: {
         validator: function (arr) {
-          return arr.length <= 4; 
+          return arr.length <= 4;
         },
         message: "Gallery cannot contain more than 4 images",
       },
@@ -34,6 +34,10 @@ const projectSchema = new mongoose.Schema(
       email: { type: String },
     },
     nearby: [String],
+
+    // ✅ New fields
+    reraNumber: { type: String },
+    possessionStatus: { type: String }, // e.g. "Ready to Move", "Under Construction"
   },
   { timestamps: true }
 );

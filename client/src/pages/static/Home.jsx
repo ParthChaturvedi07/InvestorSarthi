@@ -115,7 +115,10 @@ const Home = () => {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 md:px-12 lg:px-20">
-          <div className="relative group overflow-hidden rounded-lg shadow-lg" onClick={onClickProperties}>
+          <div
+            className="relative group overflow-hidden rounded-lg shadow-lg"
+            onClick={onClickProperties}
+          >
             <img
               src={Residential}
               alt="Residential"
@@ -137,7 +140,10 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="relative group overflow-hidden rounded-lg shadow-lg" onClick={onClickProperties}>
+          <div
+            className="relative group overflow-hidden rounded-lg shadow-lg"
+            onClick={onClickProperties}
+          >
             <img
               src={Commercial}
               alt="Commercial"
@@ -158,7 +164,10 @@ const Home = () => {
           </div>
 
           {/* Plots */}
-          <div className="relative group overflow-hidden rounded-lg shadow-lg" onClick={onClickProperties}>
+          <div
+            className="relative group overflow-hidden rounded-lg shadow-lg"
+            onClick={onClickProperties}
+          >
             <img
               src={Plot}
               alt="Plots"
@@ -266,7 +275,6 @@ const Home = () => {
             listening.
           </p>
         </motion.div>
-
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Left side - Contact Details + Form */}
           <motion.div
@@ -281,19 +289,20 @@ const Home = () => {
               <h2 className="text-2xl font-semibold mb-6">Contact Info</h2>
               <p className="text-gray-700 mb-2">
                 📧 <span className="font-medium">Email:</span>{" "}
-                investorsaarthi@gmail.com
+                contact@investorsaarthi.com
               </p>
               <p className="text-gray-700 mb-2">
                 📞 <span className="font-medium">Phone:</span> +91 9311747466
               </p>
               <p className="text-gray-700">
                 📍 <span className="font-medium">Office:</span> Investor
-                Saarthi, Gurugram, Haryana, India
+                Saarthi, D Mall, 2nd floor, Indirapuram
               </p>
             </div>
 
             {/* Form */}
             <form className="bg-[#f9f8f6] shadow-md rounded-xl p-6 space-y-4">
+              {/* Name */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Name
@@ -304,6 +313,20 @@ const Home = () => {
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-black focus:outline-none"
                 />
               </div>
+
+              {/* Phone */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Phone No.
+                </label>
+                <input
+                  type="tel"
+                  placeholder="+91 9876543210"
+                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-black focus:outline-none"
+                />
+              </div>
+
+              {/* Email */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Email
@@ -314,6 +337,34 @@ const Home = () => {
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-black focus:outline-none"
                 />
               </div>
+
+              {/* Location */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Location
+                </label>
+                <input
+                  type="text"
+                  placeholder="City / Area looking for "
+                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-black focus:outline-none"
+                />
+              </div>
+
+              {/* Looking For */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Looking For
+                </label>
+                <select className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-black focus:outline-none">
+                  <option value="">Select an option</option>
+                  <option value="Residential">Residential</option>
+                  <option value="Commercial">Commercial</option>
+                  <option value="Plot">Plot</option>
+                  <option value="Investment">Investment</option>
+                </select>
+              </div>
+
+              {/* Message */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Message
@@ -324,6 +375,8 @@ const Home = () => {
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-black focus:outline-none"
                 ></textarea>
               </div>
+
+              {/* Submit */}
               <button
                 type="submit"
                 className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-800 transition"
@@ -342,13 +395,13 @@ const Home = () => {
             className="w-full h-[400px] md:h-full rounded-xl overflow-hidden shadow-md"
           >
             <iframe
-              title="Investor Saarthi Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14016.305852999258!2d77.033086!3d28.459497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d19d2b0c0b0fb%3A0xd50deec95bf2c98b!2sGurugram%2C%20Haryana!5e0!3m2!1sen!2sin!4v1699712345678"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.4619907449605!2d77.37519206459974!3d28.64588257344578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfbc514590611%3A0xf294829608147da5!2sD%20MALL!5e0!3m2!1sen!2sin!4v1757850077727!5m2!1sen!2sin"
               width="100%"
               height="100%"
               style={{ border: 0 }}
               allowFullScreen=""
               loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </motion.div>
         </div>

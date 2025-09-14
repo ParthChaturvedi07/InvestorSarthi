@@ -206,6 +206,7 @@ export const ProjectDetails = () => {
       try {
         setLoading(true);
         const { data } = await getProjectById(id);
+        console.log(data);
         setProject(data);
         showToast("Project loaded successfully", "success");
       } catch (error) {
@@ -695,6 +696,22 @@ export const ProjectDetails = () => {
                   <span className="text-slate-600">Gallery</span>
                   <span className="text-slate-800 font-medium">
                     {project.gallery.length} photos
+                  </span>
+                </div>
+              )}
+              {project.reraNumber && (
+                <div className="flex justify-between">
+                  <span className="text-slate-600">Rera No.</span>
+                  <span className="text-slate-800 font-medium">
+                    {project.reraNumber}
+                  </span>
+                </div>
+              )}
+              {project.possessionStatus && (
+                <div className="flex justify-between">
+                  <span className="text-slate-600">Possession Status</span>
+                  <span className="text-slate-800 font-medium">
+                    {project.possessionStatus}
                   </span>
                 </div>
               )}

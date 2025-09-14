@@ -157,6 +157,12 @@ export const ProjectEdit = () => {
     description: "",
     area: "",
     location: "",
+    reraNumber: "",
+    possessionStatus: "",
+    priceList: [],
+    amenities: [],
+    nearby: [],
+    contact: { phone: "", email: "" },
   });
 
   const [gallery, setGallery] = useState([]);
@@ -193,6 +199,12 @@ export const ProjectEdit = () => {
           description: data.description || "",
           area: data.area || "",
           location: data.location || "",
+          reraNumber: data.reraNumber || "",
+          possessionStatus: data.possessionStatus || "",
+          priceList: data.priceList?.length > 0 ? data.priceList : [{ unitType: "", price: "" }],
+          amenities: data.amenities || [],
+          nearby: data.nearby || [],
+          contact: data.contact || { phone: "", email: "" },
         });
         setGallery(data.gallery || []);
         showToast("Project loaded successfully", "success");
@@ -591,6 +603,170 @@ export const ProjectEdit = () => {
                   placeholder="Provide detailed description including features, amenities, specifications..."
                 />
               </FormField>
+
+              {/* Existing fields remain unchanged above */}
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <FormField label="RERA Number">
+                  <input
+                    type="text"
+                    name="reraNumber"
+                    value={formData.reraNumber || ""}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-white/50 backdrop-blur-sm border-2 border-slate-200 rounded-xl 
+                 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 
+                 placeholder-slate-400"
+                    placeholder="Enter RERA Number"
+                  />
+                </FormField>
+
+                <FormField label="Possession Status">
+                  <input
+                    type="text"
+                    name="possessionStatus"
+                    value={formData.possessionStatus || ""}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-white/50 backdrop-blur-sm border-2 border-slate-200 rounded-xl 
+                 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 
+                 placeholder-slate-400"
+                    placeholder="e.g., Ready to Move / Under Construction – Possession 2029"
+                  />
+                </FormField>
+              </div>
+
+              <FormField label="Price List">
+                {formData.priceList.map((item, index) => (
+                  <div key={index} className="flex gap-4 mb-3">
+                    <input
+                      type="text"
+                      placeholder="Unit Type (e.g., 2BHK)"
+                      value={item.unitType}
+                      onChange={(e) => {
+                        const updated = [...formData.priceList];
+                        updated[index].unitType = e.target.value;
+                        setFormData({ ...formData, priceList: updated });
+                      }}
+                      className="w-1/2 px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-black"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Price (₹)"
+                      value={item.price}
+                      onChange={(e) => {
+                        const updated = [...formData.priceList];
+                        updated[index].price = e.target.value;
+                        setFormData({ ...formData, priceList: updated });
+                      }}
+                      className="w-1/2 px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-black"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const updated = formData.priceList.filter(
+                          (_, i) => i !== index
+                        );
+                        setFormData({ ...formData, priceList: updated });
+                      }}
+                      className="px-2 text-red-500 hover:text-red-700"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ))}
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setFormData({
+                      ...formData,
+                      priceList: [
+                        ...formData.priceList,
+                        { unitType: "", price: "" },
+                      ],
+                    })
+                  }
+                  className="mt-2 text-sm text-blue-600 hover:text-blue-800"
+                >
+                  + Add Another
+                </button>
+              </FormField>
+
+              {/* Amenities */}
+              <FormField label="Amenities (comma separated)">
+                <input
+                  type="text"
+                  name="amenities"
+                  value={formData.amenities?.join(", ") || ""}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      amenities: e.target.value.split(",").map((a) => a.trim()),
+                    }))
+                  }
+                  className="w-full px-4 py-3 bg-white/50 backdrop-blur-sm border-2 border-slate-200 
+               rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 
+               transition-all duration-200 placeholder-slate-400"
+                  placeholder="Enter amenities separated by commas"
+                />
+              </FormField>
+
+              {/* Nearby */}
+              <FormField label="Nearby (comma separated)">
+                <input
+                  type="text"
+                  name="nearby"
+                  value={formData.nearby?.join(", ") || ""}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      nearby: e.target.value.split(",").map((n) => n.trim()),
+                    }))
+                  }
+                  className="w-full px-4 py-3 bg-white/50 backdrop-blur-sm border-2 border-slate-200 
+               rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 
+               transition-all duration-200 placeholder-slate-400"
+                  placeholder="Metro station, Schools, Malls..."
+                />
+              </FormField>
+
+              {/* Contact Section */}
+              <div className="grid md:grid-cols-2 gap-6">
+                <FormField label="Contact Phone">
+                  <input
+                    type="text"
+                    name="phone"
+                    value={formData.contact?.phone || ""}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        contact: { ...prev.contact, phone: e.target.value },
+                      }))
+                    }
+                    className="w-full px-4 py-3 bg-white/50 backdrop-blur-sm border-2 border-slate-200 
+                 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 
+                 transition-all duration-200 placeholder-slate-400"
+                    placeholder="+91 1234567890"
+                  />
+                </FormField>
+
+                <FormField label="Contact Email">
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.contact?.email || ""}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        contact: { ...prev.contact, email: e.target.value },
+                      }))
+                    }
+                    className="w-full px-4 py-3 bg-white/50 backdrop-blur-sm border-2 border-slate-200 
+                 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 
+                 transition-all duration-200 placeholder-slate-400"
+                    placeholder="example@email.com"
+                  />
+                </FormField>
+              </div>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-6">
                 <button
