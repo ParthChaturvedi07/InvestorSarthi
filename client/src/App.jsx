@@ -5,16 +5,18 @@ import AppRoutes from "./routes/AppRoutes";
 import { AuthProvider } from "./context/AuthContext";
 
 import "./App.css";
+import ScrollToTop from "../utils/ScrollToTop";
 
 function App() {
   return (
     <>
       {/* <HelmetProvider> */}
-        <AuthProvider>
-          <BrowserRouter>
-            <AppRoutes />
-          </BrowserRouter>
-        </AuthProvider>
+      <AuthProvider>
+        <BrowserRouter>
+          <ScrollToTop />
+          <AppRoutes />
+        </BrowserRouter>
+      </AuthProvider>
       {/* </HelmetProvider> */}
     </>
   );

@@ -9,8 +9,15 @@ import Logo2 from "../../assets/images/logo2.svg";
 import { motion } from "framer-motion";
 import FeatureProjects from "../../components/FeatureProjects";
 import Footer from "../../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const Navigate = useNavigate();
+
+  const onClickProperties = () => {
+    Navigate("/properties");
+  };
+
   return (
     <div className="flex flex-col overflow-x-hidden">
       <div
@@ -108,7 +115,7 @@ const Home = () => {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 md:px-12 lg:px-20">
-          <div className="relative group overflow-hidden rounded-lg shadow-lg">
+          <div className="relative group overflow-hidden rounded-lg shadow-lg" onClick={onClickProperties}>
             <img
               src={Residential}
               alt="Residential"
@@ -130,7 +137,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="relative group overflow-hidden rounded-lg shadow-lg">
+          <div className="relative group overflow-hidden rounded-lg shadow-lg" onClick={onClickProperties}>
             <img
               src={Commercial}
               alt="Commercial"
@@ -151,7 +158,7 @@ const Home = () => {
           </div>
 
           {/* Plots */}
-          <div className="relative group overflow-hidden rounded-lg shadow-lg">
+          <div className="relative group overflow-hidden rounded-lg shadow-lg" onClick={onClickProperties}>
             <img
               src={Plot}
               alt="Plots"
