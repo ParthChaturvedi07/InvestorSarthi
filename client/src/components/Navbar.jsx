@@ -2,10 +2,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaFacebook, FaInstagram, FaChevronDown } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaChevronDown,
+  FaLinkedin,
+} from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { FiMenu } from "react-icons/fi";
 import logo from "../assets/images/logo.svg";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); // mobile menu
@@ -14,6 +20,7 @@ const Navbar = () => {
   const [serviceDropdown, setServiceDropdown] = useState(false);
   const dropdownTimerRef = useRef(null);
   const location = useLocation();
+  const nav = useNavigate();
 
   // scroll hide/show
   useEffect(() => {
@@ -84,8 +91,8 @@ const Navbar = () => {
       ],
     },
     { to: "/careers", label: "Careers" },
-    { to: "testimonial", label: "Testimonial", scroll: true },
-    { to: "contact", label: "Contact", scroll: true },
+    { to: "/testimonials", label: "Testimonial"},
+    { to: "/contact", label: "Contact" },
   ];
 
   // animation variants for dropdown container and items (fall down)
@@ -94,7 +101,11 @@ const Navbar = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { when: "beforeChildren", staggerChildren: 0.05, duration: 0.18 },
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.05,
+        duration: 0.18,
+      },
     },
     exit: { opacity: 0, y: -8, transition: { duration: 0.12 } },
   };
@@ -113,7 +124,10 @@ const Navbar = () => {
       className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 md:px-16 py-3"
     >
       {/* Logo */}
-      <Link to="/" className="text-lg md:text-xl font-bold tracking-wide flex items-center gap-3">
+      <Link
+        to="/"
+        className="text-lg md:text-xl font-bold tracking-wide flex items-center gap-3"
+      >
         <img src={logo} alt="Investor Saarthi" className="h-8 md:h-10" />
       </Link>
 
@@ -181,7 +195,9 @@ const Navbar = () => {
               to={link.to}
               className={({ isActive }) =>
                 `text-sm font-medium px-3 py-1 rounded-full transition ${
-                  isActive ? "bg-black text-white" : "text-gray-700 hover:text-black"
+                  isActive
+                    ? "bg-black text-white"
+                    : "text-gray-700 hover:text-black"
                 }`
               }
             >
@@ -193,8 +209,27 @@ const Navbar = () => {
 
       {/* Social icons (desktop) */}
       <div className="hidden md:flex items-center space-x-4 text-black text-lg">
-        <FaFacebook className="cursor-pointer hover:scale-110 transition" />
-        <FaInstagram className="cursor-pointer hover:scale-110 transition" />
+        <FaLinkedin
+          onClick={() =>
+            window.open(
+              "https://www.linkedin.com/",
+              "_blank"
+            )
+          }
+          className="h-7 w-7 cursor-pointer hover:scale-110 transition"
+        />
+        <FaFacebook
+          onClick={() =>
+            window.open("https://www.facebook.com/", "_blank")
+          }
+          className="h-7 w-7 cursor-pointer hover:scale-110 transition"
+        />
+        <FaInstagram
+          onClick={() =>
+            window.open("https://www.instagram.com/investor.saarthi/", "_blank")
+          }
+          className="h-7 w-7 cursor-pointer hover:scale-110 transition"
+        />
       </div>
 
       {/* Mobile menu button */}
@@ -223,7 +258,10 @@ const Navbar = () => {
             >
               <div className="flex items-center justify-between mb-6">
                 <img src={logo} alt="logo" className="h-8" />
-                <IoMdClose className="text-2xl cursor-pointer" onClick={() => setIsOpen(false)} />
+                <IoMdClose
+                  className="text-2xl cursor-pointer"
+                  onClick={() => setIsOpen(false)}
+                />
               </div>
 
               <nav className="flex flex-col gap-3">

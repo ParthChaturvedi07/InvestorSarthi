@@ -1,53 +1,130 @@
-import React from "react";
-import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight, Star, Quote, MapPin, HomeIcon, TrendingUp, CreditCard, Eye, Users, DollarSign, Globe, Award } from "lucide-react";
 import Navbar from "../../components/Navbar";
 import background from "../../assets/images/homeBack.svg";
 import Residential from "../../assets/images/resedential.png";
 import Commercial from "../../assets/images/commercial.png";
 import Plot from "../../assets/images/plot.png";
 import Logo2 from "../../assets/images/logo2.svg";
-import { motion } from "framer-motion";
 import FeatureProjects from "../../components/FeatureProjects";
 import Footer from "../../components/Footer";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const Navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
+  const [hoveredExplore, setHoveredExplore] = useState(null);
+
+  useEffect(() => {
+    setIsVisible(true);
+    
+    // Add CSS animation keyframes
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fadeInUp {
+        animation: fadeInUp 0.8s ease-out;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    return () => {
+      if (document.head.contains(style)) {
+        document.head.removeChild(style);
+      }
+    };
+  }, []);
 
   const onClickProperties = () => {
     Navigate("/properties");
   };
 
+  const stats = [
+    { number: "200+", label: "Happy Clients", icon: Users },
+    { number: "₹50Cr+", label: "Properties Sold", icon: DollarSign },
+    { number: "4", label: "Cities Covered", icon: Globe },
+    { number: "98%", label: "Client Satisfaction", icon: Award }
+  ];
+
+  const locations = [
+    { name: "Noida", properties: "50+ Projects", growth: "+12%" },
+    { name: "Greater Noida", properties: "35+ Projects", growth: "+18%" },
+    { name: "Gurgaon", properties: "40+ Projects", growth: "+15%" },
+    { name: "Ghaziabad", properties: "25+ Projects", growth: "+20%" }
+  ];
+
+  const services = [
+    {
+      title: "Property Consultation",
+      description: "Expert guidance for your investment decisions",
+      icon: HomeIcon,
+      link: "/consultation",
+      delay: 0
+    },
+    {
+      title: "Investment Advisory",
+      description: "Strategic advice for wealth building",
+      icon: TrendingUp,
+      link: "/advisory",
+      delay: 0.2
+    },
+    {
+      title: "Loan Assistance",
+      description: "End-to-end loan processing support",
+      icon: CreditCard,
+      link: "/loan-assistance",
+      delay: 0.4
+    },
+    {
+      title: "Site Visits",
+      description: "Professional property inspections and tours",
+      icon: Eye,
+      link: "/site-visits",
+      delay: 0.6
+    }
+  ];
+
   return (
     <div className="flex flex-col overflow-x-hidden">
+      {/* Hero Section */}
       <div
         className="relative min-h-screen bg-cover bg-center flex flex-col"
         style={{
           backgroundImage: `url(${background})`,
         }}
       >
-        {/* Navbar */}
         <Navbar />
 
-        {/* Hero Section */}
+        {/* Hero Content */}
         <div className="flex flex-1 items-center justify-center text-center px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            <h1 className="text-4xl md:text-6xl font-light text-white mb-8 tracking-wide font-[Cirka]">
+          <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white mb-8 md:mb-12 tracking-wide">
               INVEST WITH SENSE
             </h1>
-            <div className="flex flex-col md:flex-row gap-6 justify-center">
-              <button className="border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white hover:text-black transition">
+            <p className="text-lg md:text-xl text-white/90 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed">
+              Where smart money meets smarter decisions
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
+              <button 
+                onClick={onClickProperties}
+                className="border-2 border-white text-white px-8 py-3 md:py-4 rounded-lg hover:bg-white hover:text-black transition-all duration-300 font-medium transform hover:scale-105"
+              >
                 View Properties
               </button>
-              <button className="bg-white text-black px-8 py-3 rounded-lg shadow hover:bg-gray-200 transition">
-                Connect
+              <button className="bg-white text-black px-8 py-3 md:py-4 rounded-lg shadow-lg hover:bg-slate-100 transition-all duration-300 font-medium transform hover:scale-105">
+                Connect with Us
               </button>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Floating WhatsApp Icon */}
@@ -55,7 +132,7 @@ const Home = () => {
           href="https://wa.me/yourwhatsapplink"
           target="_blank"
           rel="noopener noreferrer"
-          className="h-14 w-14 fixed bottom-6 right-6 bg-black text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition"
+          className="h-14 w-14 fixed bottom-6 right-6 z-50 bg-green-500 text-white p-3 rounded-full shadow-2xl hover:bg-green-600 transition-all duration-300 hover:scale-110"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -70,127 +147,197 @@ const Home = () => {
         </a>
       </div>
 
-      {/* Welcome Section */}
-
-      <section className="h-[70vh] flex items-center justify-center flex-col bg-[#f5f4f3] text-center px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="font-[Cirka] text-4xl md:text-6xl uppercase text-gray-800 tracking-wider"
-        >
-          Welcome to <span className="text-black">Investor Saarthi</span>
-        </motion.h2>
-
-        <motion.h3
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xl md:text-2xl font-light mt-4 text-gray-600"
-        >
-          We Don’t Sell Properties
-        </motion.h3>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-2xl md:text-4xl font-semibold mt-3 text-gray-900"
-        >
-          We Engineer <span className="text-[#e76f51]">Better Decisions</span>
-        </motion.h2>
-
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="mt-8 bg-black text-white px-8 py-3 rounded-full text-lg shadow-md hover:bg-gray-800 transition"
-        >
-          Contact Us
-        </motion.button>
+      {/* Stats Section */}
+      <section className="bg-slate-800 py-12 md:py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+            {stats.map((stat, index) => {
+              const IconComponent = stat.icon;
+              return (
+                <div key={index} className="text-center text-white group">
+                  <div className="flex justify-center mb-3">
+                    <IconComponent className="w-8 h-8 md:w-10 md:h-10 transform group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                  <div className="text-2xl md:text-4xl font-bold mb-1">{stat.number}</div>
+                  <div className="text-sm md:text-base text-slate-300">{stat.label}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </section>
 
-      <section className="py-16 bg-gray-50 text-center">
-        <h2 className="font-[Cirka] text-3xl md:text-4xl font-light mb-12">
-          EXPLORE
-        </h2>
+      {/* Welcome Section */}
+      <section className="min-h-[70vh] flex items-center justify-center flex-col bg-[#f5f4f3] text-center px-4 py-16 md:py-24">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase text-slate-800 tracking-wider mb-6 md:mb-8 font-light">
+            Welcome to <span className="font-semibold text-black">Investor Saarthi</span>
+          </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 md:px-12 lg:px-20">
-          <div
-            className="relative group overflow-hidden rounded-lg shadow-lg"
-            onClick={onClickProperties}
-          >
-            <img
-              src={Residential}
-              alt="Residential"
-              className="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500"
-            />
-            <div
-              className="absolute inset-0 
-     bg-white/10 backdrop-blur-md 
-     flex flex-col items-center justify-center text-white px-4 text-center 
-     opacity-0 group-hover:opacity-100 
-     transition duration-500 rounded-lg"
-            >
-              <h3 className="text-xl font-semibold mb-2 drop-shadow-lg">
-                Residential
-              </h3>
-              <p className="text-sm drop-shadow-md">
-                Discover Elegant Residential Spaces for Comfortable Living
-              </p>
-            </div>
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-light mt-4 text-slate-600 mb-4">
+            We Don't Sell Properties
+          </h3>
+
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold mt-3 text-slate-900 mb-8 md:mb-12">
+            We Engineer <span className="text-[#e76f51]">Better Decisions</span>
+          </h2>
+
+          <button className="bg-black text-white px-8 py-3 md:py-4 rounded-full text-lg shadow-lg hover:bg-slate-800 transition-all duration-300 transform hover:scale-105">
+            Contact Us
+          </button>
+        </div>
+      </section>
+
+      {/* Services Preview */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-center mb-12 md:mb-16 text-slate-800">
+            Our Services
+          </h2>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {services.map((service, index) => {
+              const IconComponent = service.icon;
+              return (
+                <div
+                  key={index}
+                  className={`bg-slate-50 rounded-2xl p-6 md:p-8 text-center hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group cursor-pointer transform opacity-0 animate-fadeInUp`}
+                  style={{
+                    animationDelay: `${service.delay}s`,
+                    animationFillMode: 'forwards'
+                  }}
+                >
+                  <div className="flex justify-center mb-4">
+                    <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-110">
+                      <IconComponent className="w-8 h-8 md:w-10 md:h-10 text-slate-700 group-hover:text-slate-900 transition-colors duration-300" />
+                    </div>
+                  </div>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-3 group-hover:text-slate-900 transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-slate-600 text-sm md:text-base leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
+                    {service.description}
+                  </p>
+                  <div className="mt-6 h-1 bg-slate-200 rounded-full overflow-hidden">
+                    <div className="h-full bg-slate-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
+        </div>
+      </section>
 
-          <div
-            className="relative group overflow-hidden rounded-lg shadow-lg"
-            onClick={onClickProperties}
-          >
-            <img
-              src={Commercial}
-              alt="Commercial"
-              className="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500"
-            />
-            <div
-              className="absolute inset-0 
-     bg-white/10 backdrop-blur-md 
-     flex flex-col items-center justify-center text-white px-4 text-center 
-     opacity-0 group-hover:opacity-100 
-     transition duration-500 rounded-lg"
-            >
-              <h3 className="text-xl font-semibold mb-2">Commercial</h3>
-              <p className="text-sm">
-                View Premium Commercial Spaces to Fulfill Your Business Needs
-              </p>
+      {/* About Us */}
+      <section className="py-16 md:py-24 text-center px-4 sm:px-6 md:px-14 bg-slate-50">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-light mb-12 md:mb-16 text-slate-800">
+            ABOUT US
+          </h2>
+          <div className="flex gap-8 md:gap-12 items-center justify-center flex-col lg:flex-row">
+            <div className="w-full lg:w-[35%] flex justify-center mb-8 lg:mb-0">
+              <img src={Logo2} alt="About Logo" className="w-full max-w-md h-auto" />
             </div>
-          </div>
-
-          {/* Plots */}
-          <div
-            className="relative group overflow-hidden rounded-lg shadow-lg"
-            onClick={onClickProperties}
-          >
-            <img
-              src={Plot}
-              alt="Plots"
-              className="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500"
-            />
-            <div
-              className="absolute inset-0 
-     bg-white/10 backdrop-blur-md 
-     flex flex-col items-center justify-center text-white px-4 text-center 
-     opacity-0 group-hover:opacity-100 
-     transition duration-500 rounded-lg"
-            >
-              <h3 className="text-xl font-semibold mb-2">Plots</h3>
-              <p className="text-sm">
-                Find Prime Plots to Build Your Dream Project
+            <div className="w-full lg:w-[65%] text-slate-700 leading-relaxed text-left">
+              <p className="text-base md:text-lg mb-6 leading-relaxed">
+                Established in <span className="font-semibold">2024</span>,{" "}
+                <strong>Investor Saarthi</strong> isn't just another name in real
+                estate. We're the people investors call when they're done wasting
+                time with brochure-pushers and sweet talkers.
               </p>
+
+              <p className="text-base md:text-lg mb-8 leading-relaxed">
+                We don't believe in pushing properties.
+                <span className="font-semibold">
+                  {" "}We believe in guiding people.
+                </span>
+                Whether it's a{" "}
+                <span className="font-medium">₹45 lakh studio apartment</span> or
+                a <span className="font-medium">₹2 crore office space</span> — we
+                help you make moves that make sense.
+              </p>
+
+              <h3 className="text-xl md:text-2xl font-semibold mb-6 text-slate-800">What We Do</h3>
+              <ul className="space-y-4 md:space-y-6">
+                <li className="flex items-start">
+                  <span className="w-2 h-2 bg-slate-600 rounded-full mt-3 mr-4 flex-shrink-0"></span>
+                  <p className="text-base md:text-lg leading-relaxed">
+                    We decode real estate. Not just the buildings. The builders. The
+                    timelines. The legal fine print. The long-term math.
+                  </p>
+                </li>
+
+                <li className="flex items-start">
+                  <span className="w-2 h-2 bg-slate-600 rounded-full mt-3 mr-4 flex-shrink-0"></span>
+                  <p className="text-base md:text-lg leading-relaxed">
+                    We bring you only what's worth your attention. No overhyped
+                    launches. No brochure noise. Just curated, verified, high-ROI
+                    picks.
+                  </p>
+                </li>
+
+                <li className="flex items-start">
+                  <span className="w-2 h-2 bg-slate-600 rounded-full mt-3 mr-4 flex-shrink-0"></span>
+                  <p className="text-base md:text-lg leading-relaxed">
+                    We back it with brains. Every recommendation comes with data,
+                    experience, and investor logic.
+                    <span className="font-semibold"> Not sales targets.</span>
+                  </p>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-[#f5f4f3] py-12 flex flex-col items-center ">
-        <h2 className="text-3xl font-bold text-center my-8">
+      {/* Explore Section */}
+      <section className="py-16 md:py-24 bg-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+          <h2 className="text-3xl md:text-4xl font-light mb-12 md:mb-16 text-center text-slate-800">
+            EXPLORE
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {[
+              { img: Residential, title: "Residential", desc: "Discover Elegant Residential Spaces for Comfortable Living" },
+              { img: Commercial, title: "Commercial", desc: "View Premium Commercial Spaces to Fulfill Your Business Needs" },
+              { img: Plot, title: "Plots", desc: "Find Prime Plots to Build Your Dream Project" }
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="relative group overflow-hidden rounded-2xl shadow-lg cursor-pointer transform hover:scale-105 transition-all duration-500"
+                onClick={onClickProperties}
+                onMouseEnter={() => setHoveredExplore(index)}
+                onMouseLeave={() => setHoveredExplore(null)}
+              >
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="w-full h-64 md:h-80 object-cover transform group-hover:scale-110 transition duration-700"
+                />
+                <div className={`absolute inset-0 bg-black/40 backdrop-blur-sm flex flex-col items-center justify-center text-white px-6 text-center transition-all duration-500 ${hoveredExplore === index ? 'opacity-100' : 'opacity-0'}`}>
+                  <h3 className="text-xl md:text-2xl font-semibold mb-3 drop-shadow-lg">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm md:text-base drop-shadow-md leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+                
+                {/* Always visible title overlay */}
+                <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6 transition-all duration-500 ${hoveredExplore === index ? 'opacity-0' : 'opacity-100'}`}>
+                  <h3 className="text-xl md:text-2xl font-semibold text-white">
+                    {item.title}
+                  </h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Projects */}
+      <section className="bg-[#f5f4f3] py-16 md:py-24 flex flex-col items-center">
+        <h2 className="text-3xl md:text-4xl font-light text-center mb-12 md:mb-16 text-slate-800">
           Featured Projects
         </h2>
         <div className="w-full">
@@ -198,212 +345,73 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section id="testimonial" className="py-16 text-center">
-        <h2 className="text-2xl md:text-3xl font-light mb-8">
-          What our client say?
-        </h2>
-        <p className="text-gray-500">Testimonials slider can go here.</p>
-      </section>
-
-      {/* About Us */}
-      <section className="py-16 bg-[#f9f8f6] text-center px-6 md:px-14">
-        <h2 className="text-2xl md:text-3xl font-light mb-6">ABOUT US</h2>
-        <div className="flex gap-6 items-center justify-center flex-col md:flex-row">
-          <div className="mt-10 w-[35%] f-full flex justify-center">
-            <img src={Logo2} alt="About Logo" className="w-full h-full" />
-          </div>
-          <div className="max-w-2xl w-[65%] mx-auto text-gray-700 leading-relaxed text-left">
-            <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-              Established in <span className="font-semibold">2024</span>,{" "}
-              <strong>Investor Saarthi</strong> isn’t just another name in real
-              estate. We’re the people investors call when they’re done wasting
-              time with brochure-pushers and sweet talkers.
+      {/* Locations Section */}
+      <section className="relative bg-gradient-to-br from-slate-50 via-white to-slate-100 py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
+          {/* Heading */}
+          <div className="text-center mb-12 md:mb-20">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-slate-800 mb-6">
+              Because Great Deals Deserve to Be Remembered
+            </h2>
+            <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Investor Saarthi has never been about volume. It's been about
+              value — the kind that shows up in numbers, locations, and happy
+              clients.
             </p>
-
-            <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-              We don’t believe in pushing properties.
-              <span className="font-semibold">
-                We believe in guiding people.
-              </span>
-              Whether it’s a{" "}
-              <span className="font-medium">₹45 lakh studio apartment</span> or
-              a <span className="font-medium">₹2 crore office space</span> — we
-              help you make moves that make sense.
-            </p>
-
-            <h3 className="text-2xl font-semibold mt-10 mb-4">What We Do</h3>
-            <ul className="list-disc pl-6">
-              <li className="text-lg text-gray-700 mb-6 leading-relaxed">
-                We decode real estate. Not just the buildings. The builders. The
-                timelines. The legal fine print. The long-term math.
-              </li>
-
-              <li className="text-lg text-gray-700 mb-6 leading-relaxed">
-                We bring you only what’s worth your attention. No overhyped
-                launches. No brochure noise. Just curated, verified, high-ROI
-                picks.
-              </li>
-
-              <li className="text-lg text-gray-700 leading-relaxed">
-                We back it with brains. Every recommendation comes with data,
-                experience, and investor logic.
-                <span className="font-semibold">Not sales targets.</span>
-              </li>
-            </ul>
           </div>
-        </div>
-      </section>
 
-      <section
-        id="contact"
-        className="min-h-screen py-16 px-6 md:px-20 overflow-hidden"
-      >
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <h1 className="text-3xl md:text-5xl font-bold mb-4 font-[Cirka]">
-            Get in Touch
-          </h1>
-          <p className="text-gray-600 text-lg">
-            Let’s talk property, strategy, and clarity. Reach out — we’re always
-            listening.
-          </p>
-        </motion.div>
-        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Left side - Contact Details + Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="flex flex-col justify-between"
-          >
-            {/* Contact Info */}
-            <div className="mb-10">
-              <h2 className="text-2xl font-semibold mb-6">Contact Info</h2>
-              <p className="text-gray-700 mb-2">
-                📧 <span className="font-medium">Email:</span>{" "}
-                contact@investorsaarthi.com
+          {/* Content */}
+          <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
+            {/* Left side - text */}
+            <div className="space-y-8">
+              <p className="text-slate-700 text-lg md:text-xl leading-relaxed">
+                We don't celebrate deals closed. <br />
+                <span className="font-semibold text-slate-900 text-xl md:text-2xl">
+                  We celebrate the good decisions we helped people make.
+                </span>
               </p>
-              <p className="text-gray-700 mb-2">
-                📞 <span className="font-medium">Phone:</span> +91 9311747466
-              </p>
-              <p className="text-gray-700">
-                📍 <span className="font-medium">Office:</span> Investor
-                Saarthi, D Mall, 2nd floor, Indirapuram
-              </p>
+
+              <div className="flex items-start gap-6 bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300">
+                <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-xl bg-slate-800 text-white flex-shrink-0">
+                  <MapPin className="w-6 h-6 md:w-8 md:h-8" />
+                </div>
+                <div>
+                  <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-slate-800 mb-3">
+                    Our Footprint Is Growing — One Trusted Location at a Time
+                  </h3>
+                  <p className="text-slate-600 text-base md:text-lg leading-relaxed">
+                    From prime metros to booming townships, here's where we've
+                    helped investors put down solid ground:
+                  </p>
+                </div>
+              </div>
             </div>
 
-            {/* Form */}
-            <form className="bg-[#f9f8f6] shadow-md rounded-xl p-6 space-y-4">
-              {/* Name */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-black focus:outline-none"
-                />
+            {/* Right side - locations */}
+            <div className="bg-white rounded-2xl shadow-xl p-6 md:p-10 border border-slate-100">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {locations.map((location, index) => (
+                  <div
+                    key={index}
+                    className="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg hover:bg-white transition-all duration-300 transform hover:-translate-y-1"
+                  >
+                    <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-2">
+                      {location.name}
+                    </h3>
+                    <p className="text-sm text-slate-600 mb-1">
+                      {location.properties}
+                    </p>
+                    <p className="text-sm font-medium text-green-600">
+                      {location.growth}
+                    </p>
+                  </div>
+                ))}
               </div>
-
-              {/* Phone */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Phone No.
-                </label>
-                <input
-                  type="tel"
-                  placeholder="+91 9876543210"
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-black focus:outline-none"
-                />
-              </div>
-
-              {/* Email */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-black focus:outline-none"
-                />
-              </div>
-
-              {/* Location */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Location
-                </label>
-                <input
-                  type="text"
-                  placeholder="City / Area looking for "
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-black focus:outline-none"
-                />
-              </div>
-
-              {/* Looking For */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Looking For
-                </label>
-                <select className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-black focus:outline-none">
-                  <option value="">Select an option</option>
-                  <option value="Residential">Residential</option>
-                  <option value="Commercial">Commercial</option>
-                  <option value="Plot">Plot</option>
-                  <option value="Investment">Investment</option>
-                </select>
-              </div>
-
-              {/* Message */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Message
-                </label>
-                <textarea
-                  rows="4"
-                  placeholder="Write your message..."
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-black focus:outline-none"
-                ></textarea>
-              </div>
-
-              {/* Submit */}
-              <button
-                type="submit"
-                className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-800 transition"
-              >
-                Send Message
-              </button>
-            </form>
-          </motion.div>
-
-          {/* Right side - Map */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="w-full h-[400px] md:h-full rounded-xl overflow-hidden shadow-md"
-          >
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.4619907449605!2d77.37519206459974!3d28.64588257344578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfbc514590611%3A0xf294829608147da5!2sD%20MALL!5e0!3m2!1sen!2sin!4v1757850077727!5m2!1sen!2sin"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </motion.div>
+              <p className="text-slate-600 text-sm md:text-base mt-8 text-center italic">
+                We go where the next opportunity is — before the crowd shows up.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
