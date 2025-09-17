@@ -194,7 +194,7 @@ const Home = () => {
           Featured Projects
         </h2>
         <div className="w-full">
-          <FeatureProjects />
+          {/* <FeatureProjects /> */}
         </div>
       </section>
 
