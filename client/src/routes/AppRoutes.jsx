@@ -16,6 +16,7 @@ import SiteVisits from "../pages/static/SiteVisits";
 import PropertyDetails from "../pages/static/PropertyDetails";
 import Contact from "../pages/static/Contact";
 import Testimonials from "../pages/static/Testimonials";
+import Loader from "../components/Loader";
 export default function AppRoutes() {
   return (
     <Routes>

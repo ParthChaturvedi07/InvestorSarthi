@@ -140,7 +140,12 @@ const Home = () => {
               >
                 View Properties
               </button>
-              <button className="bg-white text-black px-8 py-3 md:py-4 rounded-lg shadow-lg hover:bg-slate-100 transition-all duration-300 font-medium transform hover:scale-105">
+              <button
+                onClick={() => {
+                  Navigate("/contact");
+                }}
+                className="bg-white text-black px-8 py-3 md:py-4 rounded-lg shadow-lg hover:bg-slate-100 transition-all duration-300 font-medium transform hover:scale-105"
+              >
                 Connect with Us
               </button>
             </div>
@@ -239,7 +244,7 @@ const Home = () => {
                       <IconComponent className="w-8 h-8 md:w-10 md:h-10 text-slate-700 group-hover:text-slate-900 transition-colors duration-300" />
                     </div>
                   </div>
-                  <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-3 group-hover:text-slate-900 transition-colors duration-300">
+                  <h3 className="whitespace-nowrap text-lg md:text-xl font-semibold text-slate-800 mb-3 group-hover:text-slate-900 transition-colors duration-300">
                     {service.title}
                   </h3>
                   <p className="text-slate-600 text-sm md:text-base leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
