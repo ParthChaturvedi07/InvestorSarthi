@@ -195,7 +195,7 @@ const PropertyDetail = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-slate-100">
+      <div className="min-h-screen bg-[#f9f8f6]">
         {property.gallery?.length > 0 && (
           <ImageModal
             isOpen={imageModal.isOpen}
@@ -222,7 +222,7 @@ const PropertyDetail = () => {
 
         <Navbar />
 
-        <div className="max-w-7xl bg-[#f9f8f6]  mx-auto py-18 px-8 md:py-28 space-y-12">
+        <div className="max-w-7xl  mx-auto py-18 px-8 md:py-28 space-y-12">
           {/* Back Button */}
           <motion.button
             initial={{ opacity: 0, x: -20 }}
@@ -476,6 +476,110 @@ const PropertyDetail = () => {
               </div>
             </InfoCard>
           )}
+
+          {/* Form */}
+          <form className="bg-slate-50 shadow-md rounded-xl p-6 space-y-4">
+            {/* Contact Info */}
+            <div className="mb-10 text-center">
+              <h2 className="text-2xl font-semibold mb-6">
+                Want to get more Info ?{" "}
+              </h2>
+              <p className="text-gray-700 mb-2">
+                📧 <span className="font-medium">Email:</span>{" "}
+                contact@investorsaarthi.com
+              </p>
+              <p className="text-gray-700 mb-2">
+                📞 <span className="font-medium">Phone:</span> +91 85878 97666 ,
+                +91 74176 20619
+              </p>
+              <p className="text-gray-700">
+                📍 <span className="font-medium">Office:</span> Investor
+                Saarthi, D Mall, 2nd floor, Indirapuram
+              </p>
+            </div>
+
+            {/* Name */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Name
+              </label>
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-black focus:outline-none"
+              />
+            </div>
+
+            {/* Phone */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Phone No.
+              </label>
+              <input
+                type="tel"
+                placeholder="+91 9876543210"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-black focus:outline-none"
+              />
+            </div>
+
+            {/* Email */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Email
+              </label>
+              <input
+                type="email"
+                placeholder="your@email.com"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-black focus:outline-none"
+              />
+            </div>
+
+            {/* Location */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Location
+              </label>
+              <input
+                type="text"
+                placeholder="City / Area looking for "
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-black focus:outline-none"
+              />
+            </div>
+
+            {/* Looking For */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Looking For
+              </label>
+              <select className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-black focus:outline-none">
+                <option value="">Select an option</option>
+                <option value="Residential">Residential</option>
+                <option value="Commercial">Commercial</option>
+                <option value="Plot">Plot</option>
+                <option value="Investment">Investment</option>
+              </select>
+            </div>
+
+            {/* Message */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Message
+              </label>
+              <textarea
+                rows="4"
+                placeholder="Write your message..."
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-black focus:outline-none"
+              ></textarea>
+            </div>
+
+            {/* Submit */}
+            <button
+              type="submit"
+              className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-800 transition"
+            >
+              Send Message
+            </button>
+          </form>
         </div>
       </div>
       <Footer />

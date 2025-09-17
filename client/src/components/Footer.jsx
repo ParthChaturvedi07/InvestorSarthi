@@ -6,7 +6,7 @@ import {
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
-import logo from "../assets/images/logo.svg";
+import logo from "../assets/images/logo3.svg";
 
 const Footer = () => {
   return (
@@ -29,27 +29,17 @@ const Footer = () => {
           <h3 className="text-base font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2 text-gray-400 text-sm">
             <li>
-              <a href="#home" className="hover:text-white transition">
+              <a href="/" className="hover:text-white transition">
                 Home
               </a>
             </li>
             <li>
-              <a href="#properties" className="hover:text-white transition">
+              <a href="properties" className="hover:text-white transition">
                 Properties
               </a>
             </li>
             <li>
-              <a href="#testimonials" className="hover:text-white transition">
-                Testimonials
-              </a>
-            </li>
-            <li>
-              <a href="#about" className="hover:text-white transition">
-                About Us
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className="hover:text-white transition">
+              <a href="contact" className="hover:text-white transition">
                 Contact
               </a>
             </li>
@@ -62,7 +52,7 @@ const Footer = () => {
           <ul className="space-y-3 text-gray-400 text-sm">
             <li className="flex items-center gap-2">
               <FaPhoneAlt className="text-white" />
-              <span>+91 76182 06189</span>
+              <span>+91 85878 97666 , +91 74176 20619</span>
             </li>
             <li className="flex items-center gap-2">
               <FaEnvelope className="text-white" />
@@ -89,7 +79,7 @@ const Footer = () => {
               <FaFacebookF />
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/investor.saarthi/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition"

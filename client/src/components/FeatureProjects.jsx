@@ -21,7 +21,7 @@ const FeaturedProjects = () => {
     const fetchProjects = async () => {
       try {
         const { data } = await getProjects();
-        setProjects(data);
+        setProjects(data.slice(0, 6)); // ✅ limit to 6 projects
       } catch (error) {
         console.error("Failed to fetch projects:", error);
       }
@@ -56,6 +56,7 @@ const FeaturedProjects = () => {
         <style>{css}</style>
 
         <Swiper
+          key={projects.length} // ✅ forces re-render once projects are loaded
           spaceBetween={0}
           autoplay={{ delay: 2000, disableOnInteraction: true }}
           effect="coverflow"

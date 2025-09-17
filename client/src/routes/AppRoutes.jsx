@@ -14,6 +14,8 @@ import PropertyConsultation from "../pages/static/PropertyConsultation";
 import InvestmentAdvisory from "../pages/static/InvestmentAdvisory";
 import SiteVisits from "../pages/static/SiteVisits";
 import PropertyDetails from "../pages/static/PropertyDetails";
+import Contact from "../pages/static/Contact";
+import Testimonials from "../pages/static/Testimonials";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -36,6 +38,8 @@ export default function AppRoutes() {
       <Route path="/property-consultation" element={<PropertyConsultation />} />
       <Route path="/investment-advisory" element={<InvestmentAdvisory />} />
       <Route path="/site-visits" element={<SiteVisits />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/testimonials" element={<Testimonials />} />
     </Routes>
   );
 }
