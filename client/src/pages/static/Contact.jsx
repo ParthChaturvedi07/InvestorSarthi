@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -40,15 +41,19 @@ const Contact = () => {
             <div className="mb-10">
               <h2 className="text-2xl font-semibold mb-6">Contact Info</h2>
               <p className="text-gray-700 mb-2">
-                📧 <span className="font-medium">Email:</span>{" "}
+                <Mail className="h-6 w-6" />
+                <span className="font-medium">Email:</span>{" "}
                 contact@investorsaarthi.com
               </p>
               <p className="text-gray-700 mb-2">
-                📞 <span className="font-medium">Phone:</span> +91 9311747466
+                <Phone className="h-6 w-6" />
+                <span className="font-medium">Phone:</span> +91 8587897666, +91
+                7417620619
               </p>
               <p className="text-gray-700">
-                📍 <span className="font-medium">Office:</span> Investor
-                Saarthi, D Mall, 2nd floor, Indirapuram
+                <MapPin className="h-6 w-6" />
+                <span className="font-medium">Office:</span> Investor Saarthi, D
+                Mall, 2nd floor, Indirapuram
               </p>
             </div>
 

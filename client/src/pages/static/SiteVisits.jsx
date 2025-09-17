@@ -3,8 +3,11 @@ import { motion } from "framer-motion";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Check, CheckSquare } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const SiteVisits = () => {
+  const navigate = useNavigate();
+
   const benefits = [
     {
       id: 1,
@@ -184,7 +187,12 @@ const SiteVisits = () => {
           <p className="text-slate-600 mb-8 md:mb-10 font-medium text-lg max-w-2xl mx-auto leading-relaxed">
             Real insights. Real experience. Real estate, up close.
           </p>
-          <button className="bg-slate-800 text-white px-10 py-4 md:px-12 md:py-5 rounded-xl hover:bg-slate-900 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl text-lg transform hover:-translate-y-1">
+          <button
+            onClick={() => {
+              navigate("/contact");
+            }}
+            className="bg-slate-800 text-white px-10 py-4 md:px-12 md:py-5 rounded-xl hover:bg-slate-900 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl text-lg transform hover:-translate-y-1"
+          >
             Schedule My Visit
           </button>
         </motion.div>

@@ -4,18 +4,25 @@ import Footer from "../../components/Footer";
 import {
   BarChart,
   BarChart2,
+  Brain,
+  Building,
   Building2,
   Construction,
+  Home,
   LineChart,
   LucideTarget,
+  MapPin,
   NotepadText,
+  Pin,
   Users,
 } from "lucide-react";
 import { FaMoneyBill } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const InvestmentAdvisory = () => {
   const [hoveredService, setHoveredService] = useState(null);
   const [activeInvestment, setActiveInvestment] = useState(0);
+  const navigate = useNavigate();
 
   const services = [
     {
@@ -78,7 +85,7 @@ const InvestmentAdvisory = () => {
     {
       title: "Serious buyers tired of vague agent advice",
       description: "Data-driven insights, not sales pitches",
-      icon: "🧠",
+      icon: <Brain className="h-8 w-8" />,
       investment: "Any budget",
     },
   ];
@@ -91,7 +98,7 @@ const InvestmentAdvisory = () => {
       liquidity: "Medium",
       pros: ["Rental income", "Capital appreciation", "Home loan benefits"],
       cons: ["Maintenance costs", "Tenant management", "Location dependent"],
-      icon: "🏠",
+      icon: <Home className="h-8 w-8" />,
     },
     {
       type: "Commercial",
@@ -100,7 +107,7 @@ const InvestmentAdvisory = () => {
       liquidity: "Low",
       pros: ["Higher yields", "Professional tenants", "Longer leases"],
       cons: ["Higher investment", "Market dependent", "Complex regulations"],
-      icon: "🏢",
+      icon: <Building className="h-8 w-8" />,
     },
     {
       type: "Plots",
@@ -109,7 +116,7 @@ const InvestmentAdvisory = () => {
       liquidity: "Low",
       pros: ["High appreciation", "No maintenance", "Development potential"],
       cons: ["No rental income", "Approval risks", "Infrastructure dependent"],
-      icon: "📍",
+      icon: <MapPin className="h-8 w8" />,
     },
   ];
 
@@ -224,8 +231,10 @@ const InvestmentAdvisory = () => {
                 onClick={() => setActiveInvestment(index)}
               >
                 <div className="text-center mb-6">
-                  <div className="text-3xl md:text-4xl mb-3">
-                    {investment.icon}
+                  <div className="flex justify-center mb-3 md:mb-4">
+                    <div className="text-3xl md:text-4xl">
+                      {investment.icon}
+                    </div>
                   </div>
                   <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-2">
                     {investment.type}
@@ -474,7 +483,12 @@ const InvestmentAdvisory = () => {
               create your strategy.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button className="bg-slate-800 text-white px-8 py-3 md:py-4 rounded-lg hover:bg-slate-900 transition-all duration-300 font-medium transform hover:scale-105">
+              <button
+                onClick={() => {
+                  navigate("/contact");
+                }}
+                className="bg-slate-800 text-white px-8 py-3 md:py-4 rounded-lg hover:bg-slate-900 transition-all duration-300 font-medium transform hover:scale-105"
+              >
                 Book Your Investment Consultation
               </button>
             </div>
