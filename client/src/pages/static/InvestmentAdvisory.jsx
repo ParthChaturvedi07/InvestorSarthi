@@ -1,6 +1,17 @@
 import React, { useState } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import {
+  BarChart,
+  BarChart2,
+  Building2,
+  Construction,
+  LineChart,
+  LucideTarget,
+  NotepadText,
+  Users,
+} from "lucide-react";
+import { FaMoneyBill } from "react-icons/fa";
 
 const InvestmentAdvisory = () => {
   const [hoveredService, setHoveredService] = useState(null);
@@ -12,7 +23,7 @@ const InvestmentAdvisory = () => {
       title: "Tailored Investment Plans",
       description:
         "Your income, your risk appetite, your timeline — we craft a strategy that suits you, not the market mood.",
-      icon: "📋",
+      icon: <NotepadText className="h-8 w-8" />,
       outcome: "Custom roadmap",
       timeframe: "1-2 weeks",
     },
@@ -21,7 +32,7 @@ const InvestmentAdvisory = () => {
       title: "Residential vs. Commercial vs. Plot – Decoded",
       description:
         "We'll tell you where your money works harder — not just where everyone's buying.",
-      icon: "🏗️",
+      icon: <Construction className="h-8 w-8" />,
       outcome: "Clear comparison",
       timeframe: "3-5 days",
     },
@@ -30,7 +41,7 @@ const InvestmentAdvisory = () => {
       title: "Growth Potential Analysis",
       description:
         "From upcoming infrastructure to developer reputation, we dive deep into what could double — and what's all talk.",
-      icon: "📈",
+      icon: <LineChart className="h-8 w-8" />,
       outcome: "Growth forecast",
       timeframe: "1 week",
     },
@@ -39,7 +50,7 @@ const InvestmentAdvisory = () => {
       title: "Exit Strategy Thinking (From Day 1)",
       description:
         "We don't just talk entry price. We talk exit strategy. Because a good investment knows when to leave.",
-      icon: "🎯",
+      icon: <LucideTarget className="h-8 w-8" />,
       outcome: "Exit timeline",
       timeframe: "Ongoing",
     },
@@ -49,19 +60,19 @@ const InvestmentAdvisory = () => {
     {
       title: "High-income earners looking to diversify beyond mutual funds",
       description: "Smart diversification strategies for wealth preservation",
-      icon: "💰",
+      icon: <FaMoneyBill className="h-8 w-8" />,
       investment: "₹50L+",
     },
     {
       title: "Business owners parking capital for long-term tax efficiency",
       description: "Tax-optimized real estate investments for businesses",
-      icon: "🏢",
+      icon: <Building2 className="h-8 w-8" />,
       investment: "₹1Cr+",
     },
     {
       title: "Parents planning for future-proof assets",
       description: "Building generational wealth through strategic property",
-      icon: "👨‍👩‍👧‍👦",
+      icon: <Users className="h-8 w-8" />,
       investment: "₹25L+",
     },
     {
@@ -439,7 +450,11 @@ const InvestmentAdvisory = () => {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-6 md:mb-8">
                 Our Investment Lens
               </h2>
-              <div className="text-4xl md:text-5xl mb-6 md:mb-8">📊</div>
+              <div className="flex justify-center mb-3 md:mb-4">
+                <div className="text-4xl md:text-5xl ">
+                  <BarChart2 className="h-12 w-12" />
+                </div>
+              </div>
               <p className="italic text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
                 "Your property should make more sense on Excel before it looks
                 good on Instagram."

@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import { Check, CheckSquare } from "lucide-react";
 
 const SiteVisits = () => {
   const benefits = [
@@ -10,28 +11,28 @@ const SiteVisits = () => {
       title: "Planned Visits. Not Property Tours.",
       description:
         "We don't drag you across 10 projects in a day. We take you to the 3 that actually make sense for you.",
-      icon: "✅",
+      icon: <CheckSquare className="h-9 w-9" />,
     },
     {
       id: 2,
       title: "On-Site Insights from Our Team",
       description:
         "We're there with you — pointing out red flags, good signs, and hidden costs the brochures won't mention.",
-      icon: "✅",
+      icon: <CheckSquare className="h-9 w-9" />,
     },
     {
       id: 3,
       title: "Compare. Calculate. Then Decide.",
       description:
         "Our team helps you evaluate what you saw — from investment logic to layout flaws.",
-      icon: "✅",
+      icon: <CheckSquare className="h-9 w-9" />,
     },
     {
       id: 4,
       title: "Transport? Sorted. Schedule? Yours.",
       description:
         "We work around your timing. Outstation? We arrange it. Busy schedule? We'll adapt.",
-      icon: "✅",
+      icon: <CheckSquare className="h-9 w-9" />,
     },
   ];
 

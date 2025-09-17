@@ -1,10 +1,29 @@
 import React, { useState } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import {
+  AlertTriangle,
+  BarChart,
+  ChartLine,
+  Cloud,
+  EarIcon,
+  HandshakeIcon,
+  Heart,
+  HouseIcon,
+  LucideBriefcaseBusiness,
+  NotepadText,
+  Plane,
+  Search,
+  Shield,
+  Target,
+} from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const PropertyConsultation = () => {
   const [hoveredService, setHoveredService] = useState(null);
   const [activeStep, setActiveStep] = useState(0);
+
+  const navigate = useNavigate();
 
   const services = [
     {
@@ -12,7 +31,7 @@ const PropertyConsultation = () => {
       title: "Clarity Calls",
       description:
         "We listen first. Your goals, your budget, your doubts — all on the table. You talk. We make sense of the chaos.",
-      icon: "💬",
+      icon: <Cloud className="h-8 w-8" />,
       duration: "30-45 mins",
       deliverable: "Clear roadmap",
     },
@@ -21,7 +40,7 @@ const PropertyConsultation = () => {
       title: "Shortlist Without the Stress",
       description:
         "We don't show you 40 random projects. We show you the 3 that actually fit your financial life and future.",
-      icon: "🎯",
+      icon: <Target className="h-8 w-8" />,
       duration: "2-3 days",
       deliverable: "Curated options",
     },
@@ -30,7 +49,7 @@ const PropertyConsultation = () => {
       title: "Investment-Focused Filtering",
       description:
         "Looking for high rental? Low entry cost? Builder credibility? We help you filter properties with logic, not just location.",
-      icon: "📊",
+      icon: <BarChart className="h-8 w-8" />,
       duration: "1 week",
       deliverable: "Investment analysis",
     },
@@ -39,7 +58,7 @@ const PropertyConsultation = () => {
       title: "Risk Radar",
       description:
         "We tell you what agents won't — from project delays to area saturation. Because avoiding a bad deal is step one of making a good one.",
-      icon: "⚠️",
+      icon: <AlertTriangle className="h-8 w-8" />,
       duration: "Ongoing",
       deliverable: "Risk assessment",
     },
@@ -49,30 +68,46 @@ const PropertyConsultation = () => {
     {
       title: "First-time buyers feeling overwhelmed",
       description: "Navigate the property maze with expert guidance",
-      icon: "🏠",
+      icon: <HouseIcon className="h-8 w-8" />,
     },
     {
       title: "Investors who don't want to fall for marketing fluff",
       description: "Get real numbers, not sales pitches",
-      icon: "📈",
+      icon: <ChartLine className="h-8 w-8" />,
     },
     {
       title: "NRIs and outstation buyers seeking ground reality",
       description: "Your eyes and ears on the ground",
-      icon: "✈️",
+      icon: <Plane className="h-8 w-8" />,
     },
     {
       title: "Business owners looking for tax-efficient asset buys",
       description: "Strategic property investments for tax optimization",
-      icon: "💼",
+      icon: <LucideBriefcaseBusiness className="h-8 w-8" />,
     },
   ];
 
   const processSteps = [
-    { title: "Listen", desc: "We understand your goals", icon: "👂" },
-    { title: "Analyze", desc: "Market research & filtering", icon: "🔍" },
-    { title: "Present", desc: "Curated options with logic", icon: "📋" },
-    { title: "Guide", desc: "Support through decision", icon: "🤝" },
+    {
+      title: "Listen",
+      desc: "We understand your goals",
+      icon: <EarIcon className="h-8 w-8" />,
+    },
+    {
+      title: "Analyze",
+      desc: "Market research & filtering",
+      icon: <Search className="h-8 w-8" />,
+    },
+    {
+      title: "Present",
+      desc: "Curated options with logic",
+      icon: <NotepadText className="h-8 w-8" />,
+    },
+    {
+      title: "Guide",
+      desc: "Support through decision",
+      icon: <Heart className="h-8 w-8" />,
+    },
   ];
 
   return (
@@ -103,7 +138,6 @@ const PropertyConsultation = () => {
           </div>
         </div>
 
-
         {/* Process Steps */}
         <div className="max-w-6xl mx-auto mb-16 md:mb-24">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-center mb-8 md:mb-12 text-slate-800">
@@ -119,8 +153,10 @@ const PropertyConsultation = () => {
                 onMouseEnter={() => setActiveStep(index)}
               >
                 <div className="bg-white rounded-xl p-6 md:p-8 text-center shadow-sm hover:shadow-lg transition-all duration-300">
-                  <div className="text-3xl md:text-4xl mb-3 md:mb-4 transform hover:scale-110 transition-transform duration-300">
-                    {step.icon}
+                  <div className="flex justify-center mb-3 md:mb-4">
+                    <div className="text-3xl md:text-4xl transform group-hover:scale-110 transition-transform duration-300">
+                      {step.icon}
+                    </div>
                   </div>
                   <h3 className="text-base md:text-lg font-semibold text-slate-800 mb-2">
                     {step.title}
@@ -161,8 +197,10 @@ const PropertyConsultation = () => {
               >
                 {/* Header */}
                 <div className="flex items-start justify-between mb-4 md:mb-6">
-                  <div className="text-3xl md:text-4xl mb-2 transform group-hover:scale-110 transition-transform duration-300">
-                    {item.icon}
+                  <div className="flex justify-center mb-3 md:mb-4">
+                    <div className="text-3xl md:text-4xl transform group-hover:scale-110 transition-transform duration-300">
+                      {item.icon}
+                    </div>
                   </div>
                   <div className="text-right">
                     <div className="bg-slate-50 px-3 py-1 rounded-full mb-1">
@@ -246,7 +284,11 @@ const PropertyConsultation = () => {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-6 md:mb-8">
                 Our Belief
               </h2>
-              <div className="text-4xl md:text-5xl mb-6 md:mb-8">🛡️</div>
+              <div className="flex justify-center mb-3 md:mb-4">
+                <div className="text-4xl md:text-5xl">
+                  <Shield className="h-12 w-12" />
+                </div>
+              </div>
               <p className="italic text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
                 "We're not in the business of pushing inventory. We're in the
                 business of protecting your money."
@@ -259,13 +301,21 @@ const PropertyConsultation = () => {
         <div className="text-center max-w-4xl mx-auto">
           <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg">
             <h3 className="text-xl sm:text-2xl md:text-3xl font-light mb-4 md:mb-6 text-slate-800">
-              🤝 Book a Consultation That Actually Helps
+              <div className="flex items-center justify-center gap-6 flex-col md:flex-row">
+                <HandshakeIcon className="h-9 w-9" />
+                <div>Book a Consultation That Actually Helps</div>
+              </div>
             </h3>
             <p className="text-slate-600 mb-6 md:mb-8 text-sm md:text-base">
               Ready to make sense of the property market? Let's talk.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button className="bg-slate-800 text-white px-8 py-3 md:py-4 rounded-lg hover:bg-slate-900 transition-all duration-300 font-medium transform hover:scale-105">
+              <button
+                onClick={() => {
+                  navigate("/contact");
+                }}
+                className="bg-slate-800 text-white px-8 py-3 md:py-4 rounded-lg hover:bg-slate-900 transition-all duration-300 font-medium transform hover:scale-105"
+              >
                 Schedule Free Clarity Call
               </button>
             </div>
