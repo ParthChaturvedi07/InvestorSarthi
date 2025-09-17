@@ -5,6 +5,8 @@ import {
   Backpack,
   Building,
   Construction,
+  Heart,
+  HeartHandshake,
   HomeIcon,
   MapPin,
   Rocket,
@@ -22,7 +24,7 @@ const LoanAssistance = () => {
       title: "Compare Loans Across Banks & NBFCs",
       description:
         "We're not loyal to any one bank — we're loyal to your interest rate. We'll compare the best options for you across major lenders.",
-      icon: <HomeIcon />,
+      icon: <HomeIcon className="h-8 w-8"/>,
       stats: "50+ Lenders",
     },
     {
@@ -30,7 +32,7 @@ const LoanAssistance = () => {
       title: "Loan Eligibility Check – In Minutes",
       description:
         "Tell us your budget and income — we'll tell you how much you can borrow. No guesswork. No jargon.",
-      icon: <Sparkle />,
+      icon: <Sparkle className="h-8 w-8"/>,
       stats: "5 Min Check",
     },
     {
@@ -38,7 +40,7 @@ const LoanAssistance = () => {
       title: "End-to-End Documentation",
       description:
         "From salary slips to sanction letters, we handle the paperwork jungle. You relax — we run it through.",
-      icon: <IoMdDocument />,
+      icon: <IoMdDocument className="h-8 w-8"/>,
       stats: "Zero Hassle",
     },
     {
@@ -46,7 +48,7 @@ const LoanAssistance = () => {
       title: "Faster Approvals, Fewer Headaches",
       description:
         "Our lending partners process files faster when they come from us. We've earned that trust. You get that edge.",
-      icon: <Rocket />,
+      icon: <Rocket className="h-8 w-8"/>,
       stats: "15 Days Avg",
     },
   ];
@@ -55,34 +57,34 @@ const LoanAssistance = () => {
     {
       title: "First-time buyers",
       description: "Navigate your first property purchase with confidence",
-      icon: <HomeIcon />,
+      icon: <HomeIcon className="h-8 w-8"/>,
     },
     {
       title: "Salaried professionals",
       description: "Maximize your loan eligibility with proper documentation",
-      icon: <Backpack />,
+      icon: <Backpack className="h-8 w-8"/>,
     },
     {
       title: "Business owners",
       description: "Self-employed? We know the right banks for you",
-      icon: <Target />,
+      icon: <Target className="h-8 w-8"/>,
     },
     {
       title: "Commercial investors",
       description:
         "Funding for commercial units, plots, and investment properties",
-      icon: <Building />,
+      icon: <Building className="h-8 w-8"/>,
     },
   ];
 
   const loanTypes = [
-    { name: "Home Loans", rate: "8.5% onwards", icon: <HomeIcon /> },
-    { name: "Plot Loans", rate: "9.2% onwards", icon: <MapPin /> },
-    { name: "Commercial Loans", rate: "10.5% onwards", icon: <Building /> },
+    { name: "Home Loans", rate: "8.5% onwards", icon: <HomeIcon className="h-8 w-8"/> },
+    { name: "Plot Loans", rate: "9.2% onwards", icon: <MapPin className="h-8 w-8"/> },
+    { name: "Commercial Loans", rate: "10.5% onwards", icon: <Building className="h-8 w-8"/> },
     {
       name: "Construction Loans",
       rate: "9.8% onwards",
-      icon: <Construction />,
+      icon: <Construction className="h-8 w-8"/>,
     },
   ];
 
@@ -287,7 +289,11 @@ const LoanAssistance = () => {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-6 md:mb-8">
                 Our Promise
               </h2>
-              <div className="text-4xl md:text-5xl mb-6 md:mb-8">💝</div>
+              <div className="flex justify-center mb-3 md:mb-4">
+                <div className="text-4xl md:text-6xl transform group-hover:scale-110 transition-transform duration-300">
+                  <HeartHandshake className="h-10 w-10"/>
+                </div>
+              </div>
               <p className="italic text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
                 "We'll never push a loan that doesn't suit you. Because we don't
                 make money from interest — we make it from integrity."

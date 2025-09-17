@@ -1,5 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Star, Quote, MapPin, HomeIcon, TrendingUp, CreditCard, Eye, Users, DollarSign, Globe, Award } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Star,
+  Quote,
+  MapPin,
+  HomeIcon,
+  TrendingUp,
+  CreditCard,
+  Eye,
+  Users,
+  DollarSign,
+  Globe,
+  Award,
+} from "lucide-react";
 import Navbar from "../../components/Navbar";
 import background from "../../assets/images/homeBack.svg";
 import Residential from "../../assets/images/resedential.png";
@@ -17,9 +31,9 @@ const Home = () => {
 
   useEffect(() => {
     setIsVisible(true);
-    
+
     // Add CSS animation keyframes
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = `
       @keyframes fadeInUp {
         from {
@@ -36,7 +50,7 @@ const Home = () => {
       }
     `;
     document.head.appendChild(style);
-    
+
     return () => {
       if (document.head.contains(style)) {
         document.head.removeChild(style);
@@ -52,14 +66,14 @@ const Home = () => {
     { number: "200+", label: "Happy Clients", icon: Users },
     { number: "₹50Cr+", label: "Properties Sold", icon: DollarSign },
     { number: "4", label: "Cities Covered", icon: Globe },
-    { number: "98%", label: "Client Satisfaction", icon: Award }
+    { number: "98%", label: "Client Satisfaction", icon: Award },
   ];
 
   const locations = [
     { name: "Noida", properties: "50+ Projects", growth: "+12%" },
     { name: "Greater Noida", properties: "35+ Projects", growth: "+18%" },
     { name: "Gurgaon", properties: "40+ Projects", growth: "+15%" },
-    { name: "Ghaziabad", properties: "25+ Projects", growth: "+20%" }
+    { name: "Ghaziabad", properties: "25+ Projects", growth: "+20%" },
   ];
 
   const services = [
@@ -67,30 +81,30 @@ const Home = () => {
       title: "Property Consultation",
       description: "Expert guidance for your investment decisions",
       icon: HomeIcon,
-      link: "/consultation",
-      delay: 0
+      link: "/property-consultation",
+      delay: 0,
     },
     {
       title: "Investment Advisory",
       description: "Strategic advice for wealth building",
       icon: TrendingUp,
-      link: "/advisory",
-      delay: 0.2
+      link: "/investment-advisory",
+      delay: 0.2,
     },
     {
       title: "Loan Assistance",
       description: "End-to-end loan processing support",
       icon: CreditCard,
       link: "/loan-assistance",
-      delay: 0.4
+      delay: 0.4,
     },
     {
       title: "Site Visits",
       description: "Professional property inspections and tours",
       icon: Eye,
       link: "/site-visits",
-      delay: 0.6
-    }
+      delay: 0.6,
+    },
   ];
 
   return (
@@ -106,7 +120,13 @@ const Home = () => {
 
         {/* Hero Content */}
         <div className="flex flex-1 items-center justify-center text-center px-4">
-          <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+          <div
+            className={`transition-all duration-1000 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-12"
+            }`}
+          >
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white mb-8 md:mb-12 tracking-wide">
               INVEST WITH SENSE
             </h1>
@@ -114,7 +134,7 @@ const Home = () => {
               Where smart money meets smarter decisions
             </p>
             <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
-              <button 
+              <button
                 onClick={onClickProperties}
                 className="border-2 border-white text-white px-8 py-3 md:py-4 rounded-lg hover:bg-white hover:text-black transition-all duration-300 font-medium transform hover:scale-105"
               >
@@ -132,7 +152,7 @@ const Home = () => {
           href="https://wa.me/yourwhatsapplink"
           target="_blank"
           rel="noopener noreferrer"
-          className="h-14 w-14 fixed bottom-6 right-6 z-50 bg-green-500 text-white p-3 rounded-full shadow-2xl hover:bg-green-600 transition-all duration-300 hover:scale-110"
+          className="h-14 w-14 fixed bottom-6 right-6 z-50 bg-black text-white p-3 rounded-full shadow-2xl hover:bg-green-600 transition-all duration-300 hover:scale-110"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -158,8 +178,12 @@ const Home = () => {
                   <div className="flex justify-center mb-3">
                     <IconComponent className="w-8 h-8 md:w-10 md:h-10 transform group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <div className="text-2xl md:text-4xl font-bold mb-1">{stat.number}</div>
-                  <div className="text-sm md:text-base text-slate-300">{stat.label}</div>
+                  <div className="text-2xl md:text-4xl font-bold mb-1">
+                    {stat.number}
+                  </div>
+                  <div className="text-sm md:text-base text-slate-300">
+                    {stat.label}
+                  </div>
                 </div>
               );
             })}
@@ -171,7 +195,8 @@ const Home = () => {
       <section className="min-h-[70vh] flex items-center justify-center flex-col bg-[#f5f4f3] text-center px-4 py-16 md:py-24">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase text-slate-800 tracking-wider mb-6 md:mb-8 font-light">
-            Welcome to <span className="font-semibold text-black">Investor Saarthi</span>
+            Welcome to{" "}
+            <span className="font-semibold text-black">Investor Saarthi</span>
           </h2>
 
           <h3 className="text-xl md:text-2xl lg:text-3xl font-light mt-4 text-slate-600 mb-4">
@@ -203,7 +228,10 @@ const Home = () => {
                   className={`bg-slate-50 rounded-2xl p-6 md:p-8 text-center hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group cursor-pointer transform opacity-0 animate-fadeInUp`}
                   style={{
                     animationDelay: `${service.delay}s`,
-                    animationFillMode: 'forwards'
+                    animationFillMode: "forwards",
+                  }}
+                  onClick={() => {
+                    Navigate(service.link);
                   }}
                 >
                   <div className="flex justify-center mb-4">
@@ -235,34 +263,43 @@ const Home = () => {
           </h2>
           <div className="flex gap-8 md:gap-12 items-center justify-center flex-col lg:flex-row">
             <div className="w-full lg:w-[35%] flex justify-center mb-8 lg:mb-0">
-              <img src={Logo2} alt="About Logo" className="w-full max-w-md h-auto" />
+              <img
+                src={Logo2}
+                alt="About Logo"
+                className="w-full max-w-md h-auto"
+              />
             </div>
             <div className="w-full lg:w-[65%] text-slate-700 leading-relaxed text-left">
               <p className="text-base md:text-lg mb-6 leading-relaxed">
                 Established in <span className="font-semibold">2024</span>,{" "}
-                <strong>Investor Saarthi</strong> isn't just another name in real
-                estate. We're the people investors call when they're done wasting
-                time with brochure-pushers and sweet talkers.
+                <strong>Investor Saarthi</strong> isn't just another name in
+                real estate. We're the people investors call when they're done
+                wasting time with brochure-pushers and sweet talkers.
               </p>
 
               <p className="text-base md:text-lg mb-8 leading-relaxed">
                 We don't believe in pushing properties.
                 <span className="font-semibold">
-                  {" "}We believe in guiding people.
+                  {" "}
+                  We believe in guiding people.
                 </span>
                 Whether it's a{" "}
-                <span className="font-medium">₹45 lakh studio apartment</span> or
-                a <span className="font-medium">₹2 crore office space</span> — we
-                help you make moves that make sense.
+                <span className="font-medium">
+                  ₹45 lakh studio apartment
+                </span>{" "}
+                or a <span className="font-medium">₹2 crore office space</span>{" "}
+                — we help you make moves that make sense.
               </p>
 
-              <h3 className="text-xl md:text-2xl font-semibold mb-6 text-slate-800">What We Do</h3>
+              <h3 className="text-xl md:text-2xl font-semibold mb-6 text-slate-800">
+                What We Do
+              </h3>
               <ul className="space-y-4 md:space-y-6">
                 <li className="flex items-start">
                   <span className="w-2 h-2 bg-slate-600 rounded-full mt-3 mr-4 flex-shrink-0"></span>
                   <p className="text-base md:text-lg leading-relaxed">
-                    We decode real estate. Not just the buildings. The builders. The
-                    timelines. The legal fine print. The long-term math.
+                    We decode real estate. Not just the buildings. The builders.
+                    The timelines. The legal fine print. The long-term math.
                   </p>
                 </li>
 
@@ -270,16 +307,16 @@ const Home = () => {
                   <span className="w-2 h-2 bg-slate-600 rounded-full mt-3 mr-4 flex-shrink-0"></span>
                   <p className="text-base md:text-lg leading-relaxed">
                     We bring you only what's worth your attention. No overhyped
-                    launches. No brochure noise. Just curated, verified, high-ROI
-                    picks.
+                    launches. No brochure noise. Just curated, verified,
+                    high-ROI picks.
                   </p>
                 </li>
 
                 <li className="flex items-start">
                   <span className="w-2 h-2 bg-slate-600 rounded-full mt-3 mr-4 flex-shrink-0"></span>
                   <p className="text-base md:text-lg leading-relaxed">
-                    We back it with brains. Every recommendation comes with data,
-                    experience, and investor logic.
+                    We back it with brains. Every recommendation comes with
+                    data, experience, and investor logic.
                     <span className="font-semibold"> Not sales targets.</span>
                   </p>
                 </li>
@@ -298,9 +335,21 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
-              { img: Residential, title: "Residential", desc: "Discover Elegant Residential Spaces for Comfortable Living" },
-              { img: Commercial, title: "Commercial", desc: "View Premium Commercial Spaces to Fulfill Your Business Needs" },
-              { img: Plot, title: "Plots", desc: "Find Prime Plots to Build Your Dream Project" }
+              {
+                img: Residential,
+                title: "Residential",
+                desc: "Discover Elegant Residential Spaces for Comfortable Living",
+              },
+              {
+                img: Commercial,
+                title: "Commercial",
+                desc: "View Premium Commercial Spaces to Fulfill Your Business Needs",
+              },
+              {
+                img: Plot,
+                title: "Plots",
+                desc: "Find Prime Plots to Build Your Dream Project",
+              },
             ].map((item, index) => (
               <div
                 key={index}
@@ -314,7 +363,11 @@ const Home = () => {
                   alt={item.title}
                   className="w-full h-64 md:h-80 object-cover transform group-hover:scale-110 transition duration-700"
                 />
-                <div className={`absolute inset-0 bg-black/40 backdrop-blur-sm flex flex-col items-center justify-center text-white px-6 text-center transition-all duration-500 ${hoveredExplore === index ? 'opacity-100' : 'opacity-0'}`}>
+                <div
+                  className={`absolute inset-0 bg-black/40 backdrop-blur-sm flex flex-col items-center justify-center text-white px-6 text-center transition-all duration-500 ${
+                    hoveredExplore === index ? "opacity-100" : "opacity-0"
+                  }`}
+                >
                   <h3 className="text-xl md:text-2xl font-semibold mb-3 drop-shadow-lg">
                     {item.title}
                   </h3>
@@ -322,9 +375,13 @@ const Home = () => {
                     {item.desc}
                   </p>
                 </div>
-                
+
                 {/* Always visible title overlay */}
-                <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6 transition-all duration-500 ${hoveredExplore === index ? 'opacity-0' : 'opacity-100'}`}>
+                <div
+                  className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6 transition-all duration-500 ${
+                    hoveredExplore === index ? "opacity-0" : "opacity-100"
+                  }`}
+                >
                   <h3 className="text-xl md:text-2xl font-semibold text-white">
                     {item.title}
                   </h3>
@@ -336,17 +393,21 @@ const Home = () => {
       </section>
 
       {/* Featured Projects */}
-      <section className="bg-[#f5f4f3] py-16 md:py-24 flex flex-col items-center">
+      <section className="py-16 md:py-24 flex flex-col items-center">
         <h2 className="text-3xl md:text-4xl font-light text-center mb-12 md:mb-16 text-slate-800">
           Featured Projects
         </h2>
         <div className="w-full">
-          <FeatureProjects />
+          {/* <FeatureProjects
+            onClick={() => {
+              Navigate("/properties");
+            }}
+          /> */}
         </div>
       </section>
 
       {/* Locations Section */}
-      <section className="relative bg-gradient-to-br from-slate-50 via-white to-slate-100 py-16 md:py-24">
+      <section className="relative bg-slate-50 py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
           {/* Heading */}
           <div className="text-center mb-12 md:mb-20">
