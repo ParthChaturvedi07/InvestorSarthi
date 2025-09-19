@@ -261,7 +261,7 @@ const Home = () => {
       </section>
 
       {/* About Us */}
-      <section className="py-16 md:py-24 text-center px-4 sm:px-6 md:px-14 bg-slate-50">
+      <section className="py-16 md:py-24 text-center px-4 sm:px-6 md:px-14 bg-[#f5f4f3]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-light mb-12 md:mb-16 text-slate-800">
             ABOUT US
@@ -332,7 +332,7 @@ const Home = () => {
       </section>
 
       {/* Explore Section */}
-      <section className="py-16 md:py-24 bg-slate-100">
+      <section className="py-16 md:py-24 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <h2 className="text-3xl md:text-4xl font-light mb-12 md:mb-16 text-center text-slate-800">
             EXPLORE
@@ -398,21 +398,17 @@ const Home = () => {
       </section>
 
       {/* Featured Projects */}
-      <section className="py-16 md:py-24 flex flex-col items-center">
+      <section className="py-16 md:py-24 flex flex-col items-center bg-[#f5f4f3] ">
         <h2 className="text-3xl md:text-4xl font-light text-center mb-12 md:mb-16 text-slate-800">
           Featured Projects
         </h2>
         <div className="w-full">
-          {/* <FeatureProjects
-            onClick={() => {
-              Navigate("/properties");
-            }}
-          /> */}
+          <FeatureProjects />
         </div>
       </section>
 
       {/* Locations Section */}
-      <section className="relative bg-slate-50 py-16 md:py-24">
+      <section className="relative py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
           {/* Heading */}
           <div className="text-center mb-12 md:mb-20">

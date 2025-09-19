@@ -13,7 +13,7 @@ import useMetaPixel from "./hooks/useMetaPixel";
 function App() {
   const [loading, setLoading] = useState(true);
 
-  useMetaPixel();
+  // useMetaPixel();
   
   useEffect(() => {
     const timer = setTimeout(() => {
