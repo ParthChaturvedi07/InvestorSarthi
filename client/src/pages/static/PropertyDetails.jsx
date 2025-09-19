@@ -141,12 +141,29 @@ const PropertyDetail = () => {
     currentIndex: 0,
   });
 
+  // Contact form state
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+    propertyId: id,
+    propertyTitle: "",
+  });
+  const [formLoading, setFormLoading] = useState(false);
+  const [formSuccess, setFormSuccess] = useState("");
+  const [formError, setFormError] = useState("");
+
   useEffect(() => {
     const fetchProperty = async () => {
       try {
         setLoading(true);
         const { data } = await getProjectById(id);
         setProperty(data);
+        setForm((prev) => ({
+          ...prev,
+          propertyTitle: data?.title || "",
+        }));
       } catch (err) {
         console.error("Error fetching property:", err);
       } finally {
@@ -155,6 +172,45 @@ const PropertyDetail = () => {
     };
     fetchProperty();
   }, [id]);
+
+  const handleFormChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setFormLoading(true);
+    setFormSuccess("");
+    setFormError("");
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL
+        ? `${import.meta.env.VITE_API_URL}/auth/contact`
+        : "/api/auth/contact";
+      const res = await fetch(apiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setFormSuccess(data.message || "Form submitted successfully.");
+        setForm({
+          name: "",
+          phone: "",
+          email: "",
+          message: "",
+          propertyId: id,
+          propertyTitle: property?.title || "",
+        });
+      } else {
+        setFormError(data.error || "Failed to submit form.");
+      }
+    } catch (err) {
+      setFormError("Network error. Please try again.");
+    } finally {
+      setFormLoading(false);
+    }
+  };
 
   const formatPrice = (price) =>
     !price || price === "N/A" ? "Price on request" : price;
@@ -541,61 +597,72 @@ const PropertyDetail = () => {
               </div>
             </div>
 
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleFormSubmit}>
+              {formSuccess && (
+                <div className="text-green-700 font-semibold text-center mb-2">{formSuccess}</div>
+              )}
+              {formError && (
+                <div className="text-red-600 font-semibold text-center mb-2">{formError}</div>
+              )}
               {/* Name */}
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">
-                  Name
-                </label>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">Name</label>
                 <input
                   type="text"
+                  name="name"
+                  value={form.name}
+                  onChange={handleFormChange}
                   placeholder="Your Name"
                   className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-slate-800 focus:border-slate-800 focus:outline-none transition-all font-medium text-slate-700"
+                  required
                 />
               </div>
-
               {/* Phone */}
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">
-                  Phone No.
-                </label>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">Phone No.</label>
                 <input
                   type="tel"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleFormChange}
                   placeholder="+91 9876543210"
                   className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-slate-800 focus:border-slate-800 focus:outline-none transition-all font-medium text-slate-700"
+                  required
                 />
               </div>
-
               {/* Email */}
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">
-                  Email
-                </label>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">Email</label>
                 <input
                   type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleFormChange}
                   placeholder="your@email.com"
                   className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-slate-800 focus:border-slate-800 focus:outline-none transition-all font-medium text-slate-700"
+                  required
                 />
               </div>
-
-              {/* Location */}
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">
-                  Location
-                </label>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">Location</label>
                 <input
                   type="text"
+                  name="location"
+                  value={form.location || ""}
+                  onChange={handleFormChange}
                   placeholder="City / Area looking for"
                   className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-slate-800 focus:border-slate-800 focus:outline-none transition-all font-medium text-slate-700"
                 />
               </div>
-
               {/* Looking For */}
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">
-                  Looking For
-                </label>
-                <select className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-slate-800 focus:border-slate-800 focus:outline-none transition-all font-medium text-slate-700">
+                <label className="block text-sm font-semibold text-slate-700 mb-2">Looking For</label>
+                <select
+                  name="lookingFor"
+                  value={form.lookingFor || ""}
+                  onChange={handleFormChange}
+                  className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-slate-800 focus:border-slate-800 focus:outline-none transition-all font-medium text-slate-700"
+                >
                   <option value="">Select an option</option>
                   <option value="Residential">Residential</option>
                   <option value="Commercial">Commercial</option>
@@ -603,26 +670,26 @@ const PropertyDetail = () => {
                   <option value="Investment">Investment</option>
                 </select>
               </div>
-
               {/* Message */}
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">
-                  Message
-                </label>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">Message</label>
                 <textarea
                   rows="4"
+                  name="message"
+                  value={form.message}
+                  onChange={handleFormChange}
                   placeholder="Write your message..."
                   className="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-slate-800 focus:border-slate-800 focus:outline-none transition-all font-medium text-slate-700 resize-none"
                 ></textarea>
               </div>
-
               {/* Submit */}
               <button
                 type="submit"
                 className="w-full bg-slate-800 text-white py-3 rounded-xl hover:bg-slate-900 transition-all font-semibold shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                disabled={formLoading}
               >
                 <Send className="w-4 h-4" />
-                Send Message
+                {formLoading ? "Sending..." : "Send Message"}
               </button>
             </form>
           </motion.div>
