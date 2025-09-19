@@ -113,7 +113,8 @@ const Home = () => {
       <div
         className="relative min-h-screen bg-cover bg-center flex flex-col"
         style={{
-          backgroundImage: `url(${background})`,
+          backgroundImage:
+            "url(https://res.cloudinary.com/drtyehnro/image/upload/v1758319402/homeBack_rdblyb.svg)",
         }}
       >
         <Navbar />
