@@ -8,13 +8,17 @@ import "./App.css";
 import ScrollToTop from "../utils/ScrollToTop";
 import Loader from "./components/Loader";
 
+import useMetaPixel from "./hooks/useMetaPixel";
+
 function App() {
   const [loading, setLoading] = useState(true);
 
+  useMetaPixel();
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000); 
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
