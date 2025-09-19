@@ -28,9 +28,7 @@ const Contact = () => {
     setError("");
     try {
       // Use VITE_API_URL if defined, else fallback to relative path
-      const apiUrl = import.meta.env.VITE_API_URL
-        ? `${import.meta.env.VITE_API_URL}/auth/contact`
-        : "/api/auth/contact";
+      const apiUrl = `${import.meta.env.VITE_API_URL}/api/auth/contact`;
       const res = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -110,16 +108,25 @@ const Contact = () => {
             </div>
 
             {/* Form */}
-            <form className="bg-[#f9f8f6] shadow-md rounded-xl p-6 space-y-4" onSubmit={handleSubmit}>
+            <form
+              className="bg-[#f9f8f6] shadow-md rounded-xl p-6 space-y-4"
+              onSubmit={handleSubmit}
+            >
               {success && (
-                <div className="text-green-700 font-semibold text-center mb-2">{success}</div>
+                <div className="text-green-700 font-semibold text-center mb-2">
+                  {success}
+                </div>
               )}
               {error && (
-                <div className="text-red-600 font-semibold text-center mb-2">{error}</div>
+                <div className="text-red-600 font-semibold text-center mb-2">
+                  {error}
+                </div>
               )}
               {/* Name */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Name
+                </label>
                 <input
                   type="text"
                   name="name"
@@ -132,7 +139,9 @@ const Contact = () => {
               </div>
               {/* Phone */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Phone No.</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Phone No.
+                </label>
                 <input
                   type="tel"
                   name="phone"
@@ -145,7 +154,9 @@ const Contact = () => {
               </div>
               {/* Email */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Email
+                </label>
                 <input
                   type="email"
                   name="email"
@@ -158,7 +169,9 @@ const Contact = () => {
               </div>
               {/* Location */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Location
+                </label>
                 <input
                   type="text"
                   name="location"
@@ -170,7 +183,9 @@ const Contact = () => {
               </div>
               {/* Looking For */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Looking For</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Looking For
+                </label>
                 <select
                   name="lookingFor"
                   value={form.lookingFor}
@@ -186,7 +201,9 @@ const Contact = () => {
               </div>
               {/* Message */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Message
+                </label>
                 <textarea
                   rows="4"
                   name="message"

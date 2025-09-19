@@ -183,9 +183,7 @@ const PropertyDetail = () => {
     setFormSuccess("");
     setFormError("");
     try {
-      const apiUrl = import.meta.env.VITE_API_URL
-        ? `${import.meta.env.VITE_API_URL}/auth/contact`
-        : "/api/auth/contact";
+      const apiUrl = `${import.meta.env.VITE_API_URL}/api/auth/contact`;
       const res = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -599,14 +597,20 @@ const PropertyDetail = () => {
 
             <form className="space-y-6" onSubmit={handleFormSubmit}>
               {formSuccess && (
-                <div className="text-green-700 font-semibold text-center mb-2">{formSuccess}</div>
+                <div className="text-green-700 font-semibold text-center mb-2">
+                  {formSuccess}
+                </div>
               )}
               {formError && (
-                <div className="text-red-600 font-semibold text-center mb-2">{formError}</div>
+                <div className="text-red-600 font-semibold text-center mb-2">
+                  {formError}
+                </div>
               )}
               {/* Name */}
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Name</label>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                  Name
+                </label>
                 <input
                   type="text"
                   name="name"
@@ -619,7 +623,9 @@ const PropertyDetail = () => {
               </div>
               {/* Phone */}
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Phone No.</label>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                  Phone No.
+                </label>
                 <input
                   type="tel"
                   name="phone"
@@ -632,7 +638,9 @@ const PropertyDetail = () => {
               </div>
               {/* Email */}
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Email</label>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                  Email
+                </label>
                 <input
                   type="email"
                   name="email"
@@ -644,7 +652,9 @@ const PropertyDetail = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Location</label>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                  Location
+                </label>
                 <input
                   type="text"
                   name="location"
@@ -656,7 +666,9 @@ const PropertyDetail = () => {
               </div>
               {/* Looking For */}
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Looking For</label>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                  Looking For
+                </label>
                 <select
                   name="lookingFor"
                   value={form.lookingFor || ""}
@@ -672,7 +684,9 @@ const PropertyDetail = () => {
               </div>
               {/* Message */}
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Message</label>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                  Message
+                </label>
                 <textarea
                   rows="4"
                   name="message"
