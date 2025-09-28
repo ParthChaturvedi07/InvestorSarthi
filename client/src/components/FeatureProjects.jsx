@@ -16,20 +16,52 @@ import "swiper/css/navigation";
 import { useNavigate } from "react-router-dom";
 
 const FeaturedProjects = () => {
-  const [projects, setProjects] = useState([]);
+  
   const Navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const { data } = await getProjects();
-        setProjects(data.slice(0, 6)); // limit to 6 projects
-      } catch (error) {
-        console.error("Failed to fetch projects:", error);
-      }
-    };
-    fetchProjects();
-  }, []);
+  const projects = [
+    {
+      title: "Eternia Residences",
+      type: "Residential",
+      description:
+        "Eternia is a premium residential apartment project in Tech Zone 4, Greater Noida West, offering spacious 3 & 4 BHK homes with modern design and excellent connectivity.",
+      gallery: ["/images/projects/eternia.jpg"],
+    },
+    {
+      title: "ELDECO WOW",
+      type: "Residential",
+      description:
+        "A luxury residential apartment project by ELDECO Group in Sector 22D, Yamuna Expressway with premium finishes, podium greens, and modern amenities.",
+      gallery: ["/images/projects/eldeco.jpg"],
+    },
+    {
+      title: "Gaur New Launch – Sector 22D",
+      type: "Residential",
+      description:
+        "Premium 3 & 4 BHK apartments by Gaurs Group in Sector 22D, Yamuna Expressway, spread across 12 acres with extensive green spaces and luxury amenities.",
+      gallery: ["/images/projects/gaur.jpg"],
+    },
+    {
+      title: "Ganga County – Premium Township",
+      type: "Plot",
+      description:
+        "Premium residential township near Garhmukteshwar, Hapur, offering plots from 150–500 sq. yards with modern facilities and proximity to the Ganga River.",
+      gallery: ["/images/projects/ganga.jpg"],
+    },
+    {
+      title: "Shiv Shakti Vihar",
+      type: "Plot",
+      description:
+        "A plotted township near Jewar International Airport offering freehold plots with strategic location benefits and community amenities.",
+      gallery: ["/images/projects/shivshakti.jpg"],
+    },
+    {
+      title: "CRC The Flagship",
+      type: "Commercial",
+      description:
+        "Premium commercial development at Noida Expressway with office spaces, retail shops, and serviced suites managed by an international operator.",
+      gallery: ["/images/projects/crc.jpg"],
+    },
+  ];
 
   const css = `
     .CarouselProjects {
@@ -96,9 +128,8 @@ const FeaturedProjects = () => {
       >
         <style>{css}</style>
 
-
         <Swiper
-          key={projects.length} 
+          key={projects.length}
           spaceBetween={0}
           autoplay={{ delay: 3000, disableOnInteraction: true }}
           effect="coverflow"
@@ -139,11 +170,15 @@ const FeaturedProjects = () => {
                   />
                   {/* Overlay on hover */}
                   <div className="absolute inset-0 bg-slate-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
+
                   {/* Property type badge */}
                   {project.type && (
                     <div className="absolute top-4 left-4">
-                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getPropertyType(project.type)} shadow-md`}>
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-semibold ${getPropertyType(
+                          project.type
+                        )} shadow-md`}
+                      >
                         {project.type}
                       </span>
                     </div>
@@ -154,38 +189,18 @@ const FeaturedProjects = () => {
                   <h3 className="text-lg font-bold text-slate-800 mb-3 group-hover:text-slate-900 transition-colors">
                     {project.title}
                   </h3>
-                  
+
                   <p className="text-sm text-slate-600 mb-4 font-medium leading-relaxed min-h-[2.5rem]">
-                    {(project.description || project.overview || "Premium property with modern amenities").substring(0, 120)}
-                    {(project.description || project.overview || "").length > 120 ? "..." : ""}
+                    {(
+                      project.description ||
+                      project.overview ||
+                      "Premium property with modern amenities"
+                    ).substring(0, 120)}
+                    {(project.description || project.overview || "").length >
+                    120
+                      ? "..."
+                      : ""}
                   </p>
-
-                  {/* Property details */}
-                  <div className="space-y-3">
-                    {project.location && (
-                      <div className="flex items-center text-slate-600 text-sm">
-                        <span className="mr-2">📍</span>
-                        <span className="font-medium">{project.location}</span>
-                      </div>
-                    )}
-
-                    {project.area && (
-                      <div className="flex items-center text-slate-600 text-sm">
-                        <span className="mr-2">📐</span>
-                        <span className="font-medium">{project.area}</span>
-                      </div>
-                    )}
-
-                    {/* Price */}
-                    <div className="flex items-center justify-between pt-3 border-t border-slate-100">
-                      <div className="text-slate-800 font-bold text-lg">
-                        {formatPrice(project.priceList)}
-                      </div>
-                      <div className="text-slate-500 text-xs font-medium">
-                        Starting from
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </SwiperSlide>
