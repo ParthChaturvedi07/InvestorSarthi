@@ -33,7 +33,8 @@ const Contact = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
-      });
+      });navigator
+      
       const data = await res.json();
       if (res.ok) {
         setSuccess(data.message || "Form submitted successfully.");
