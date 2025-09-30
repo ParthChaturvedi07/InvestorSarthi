@@ -2,10 +2,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config({ path: ".env" });
 
-const DB_URI =
-  process.env.NODE_ENV === "development"
-    ? process.env.DB_CONNECT_LOCAL
-    : process.env.DB_CONNECT_ATLAS;
+const DB_URI = process.env.DB_CONNECT_ATLAS;
 
 const connectToDb = async () => {
   try {

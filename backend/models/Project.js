@@ -35,9 +35,8 @@ const projectSchema = new mongoose.Schema(
     },
     nearby: [String],
 
-    // ✅ New fields
     reraNumber: { type: String },
-    possessionStatus: { type: String }, // e.g. "Ready to Move", "Under Construction"
+    possessionStatus: { type: String }, 
   },
   { timestamps: true }
 );
