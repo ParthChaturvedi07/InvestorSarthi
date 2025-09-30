@@ -335,12 +335,12 @@ const PropertyDetail = () => {
                   <div className="flex items-center gap-3 mb-3">
                     <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30">
                       <TypeIcon className="w-5 h-5 inline mr-2" />
-                      <span className="font-semibold">{property.type}</span>
+                      <span className="text-sm md:text-base lg:text-lg font-semibold">{property.type}</span>
                     </div>
                     {property.location && (
                       <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/30 flex items-center gap-2">
                         <MapPin className="w-4 h-4" />
-                        <span className="font-medium">{property.location}</span>
+                        <span className="text-sm md:text-base lg:text-lg font-medium">{property.location}</span>
                       </div>
                     )}
                   </div>
