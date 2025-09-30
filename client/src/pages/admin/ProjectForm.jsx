@@ -36,15 +36,21 @@ const Toast = ({ message, type = "success", onClose }) => {
   };
 
   return (
-    <div className={`fixed top-4 right-4 z-50 max-w-sm w-full mx-4 sm:mx-0 transform transition-all duration-300 ease-in-out animate-slide-in`}>
-      <div className={`${getToastStyles()} text-white p-4 rounded-xl shadow-2xl border backdrop-blur-sm`}>
+    <div
+      className={`fixed top-4 right-4 z-50 max-w-sm w-full mx-4 sm:mx-0 transform transition-all duration-300 ease-in-out animate-slide-in`}
+    >
+      <div
+        className={`${getToastStyles()} text-white p-4 rounded-xl shadow-2xl border backdrop-blur-sm`}
+      >
         <div className="flex items-start gap-3">
           <span className="text-lg flex-shrink-0 mt-0.5">{getIcon()}</span>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium leading-relaxed break-words">{message}</p>
+            <p className="text-sm font-medium leading-relaxed break-words">
+              {message}
+            </p>
           </div>
-          <button 
-            onClick={onClose} 
+          <button
+            onClick={onClose}
             className="flex-shrink-0 ml-2 text-white/80 hover:text-white transition-colors duration-200 text-lg font-semibold"
             aria-label="Close notification"
           >
@@ -81,8 +87,8 @@ const FormField = ({ label, children, required = false, error = null }) => (
 const Input = ({ className = "", error = false, ...props }) => (
   <input
     className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-500/20 ${
-      error 
-        ? "border-red-300 bg-red-50 focus:border-red-500" 
+      error
+        ? "border-red-300 bg-red-50 focus:border-red-500"
         : "border-slate-200 bg-white focus:border-blue-500 hover:border-slate-300"
     } ${className}`}
     {...props}
@@ -93,8 +99,8 @@ const Input = ({ className = "", error = false, ...props }) => (
 const TextArea = ({ className = "", error = false, ...props }) => (
   <textarea
     className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-500/20 resize-vertical ${
-      error 
-        ? "border-red-300 bg-red-50 focus:border-red-500" 
+      error
+        ? "border-red-300 bg-red-50 focus:border-red-500"
         : "border-slate-200 bg-white focus:border-blue-500 hover:border-slate-300"
     } ${className}`}
     {...props}
@@ -105,8 +111,8 @@ const TextArea = ({ className = "", error = false, ...props }) => (
 const Select = ({ className = "", error = false, children, ...props }) => (
   <select
     className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-500/20 ${
-      error 
-        ? "border-red-300 bg-red-50 focus:border-red-500" 
+      error
+        ? "border-red-300 bg-red-50 focus:border-red-500"
         : "border-slate-200 bg-white focus:border-blue-500 hover:border-slate-300"
     } ${className}`}
     {...props}
@@ -116,13 +122,13 @@ const Select = ({ className = "", error = false, children, ...props }) => (
 );
 
 // ✅ Enhanced button component
-const Button = ({ 
-  children, 
-  variant = "primary", 
-  size = "md", 
-  disabled = false, 
-  className = "", 
-  ...props 
+const Button = ({
+  children,
+  variant = "primary",
+  size = "md",
+  disabled = false,
+  className = "",
+  ...props
 }) => {
   const getVariantStyles = () => {
     switch (variant) {
@@ -171,6 +177,9 @@ export const ProjectForm = () => {
     amenities: [],
     nearby: [],
     contact: { phone: "", email: "" },
+    locationMap: "",
+    reraNumber: "",
+    possessionStatus: "",
   });
 
   const [priceInput, setPriceInput] = useState({ unitType: "", price: "" });
@@ -186,34 +195,40 @@ export const ProjectForm = () => {
   const showToast = (msg, type = "success") => {
     setToast({ message: msg, type });
   };
-  
+
   const hideToast = () => setToast(null);
 
   // ✅ Enhanced validation
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.title.trim()) {
       newErrors.title = "Project title is required";
     }
-    
+
     if (!formData.type) {
       newErrors.type = "Project type is required";
     }
-    
+
     if (!formData.location.trim()) {
       newErrors.location = "Location is required";
     }
-    
+
     if (!formData.description.trim()) {
       newErrors.description = "Description is required";
     }
-    
-    if (formData.contact.email && !/\S+@\S+\.\S+/.test(formData.contact.email)) {
+
+    if (
+      formData.contact.email &&
+      !/\S+@\S+\.\S+/.test(formData.contact.email)
+    ) {
       newErrors.email = "Please enter a valid email address";
     }
-    
-    if (formData.contact.phone && !/^\+?[\d\s\-\(\)]{10,}$/.test(formData.contact.phone)) {
+
+    if (
+      formData.contact.phone &&
+      !/^\+?[\d\s\-\(\)]{10,}$/.test(formData.contact.phone)
+    ) {
       newErrors.phone = "Please enter a valid phone number";
     }
 
@@ -224,16 +239,16 @@ export const ProjectForm = () => {
   // ✅ Enhanced change handler with error clearing
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
+
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: null }));
+      setErrors((prev) => ({ ...prev, [name]: null }));
     }
-    
+
     if (name.includes("contact.")) {
       const field = name.split(".")[1];
       if (errors[field]) {
-        setErrors(prev => ({ ...prev, [field]: null }));
+        setErrors((prev) => ({ ...prev, [field]: null }));
       }
       setFormData((prev) => ({
         ...prev,
@@ -323,9 +338,9 @@ export const ProjectForm = () => {
     const files = Array.from(e.target.files);
     const maxFiles = 4;
     const maxSize = 5 * 1024 * 1024; // 5MB
-    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
-    
-    const validFiles = files.filter(file => {
+    const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+
+    const validFiles = files.filter((file) => {
       if (!allowedTypes.includes(file.type)) {
         showToast(`${file.name} is not a supported image format`, "error");
         return false;
@@ -339,9 +354,12 @@ export const ProjectForm = () => {
 
     const currentCount = gallery.length + newImages.length;
     const remaining = maxFiles - currentCount;
-    
+
     if (validFiles.length > remaining) {
-      showToast(`You can only upload ${remaining} more images (max ${maxFiles})`, "error");
+      showToast(
+        `You can only upload ${remaining} more images (max ${maxFiles})`,
+        "error"
+      );
       setNewImages(validFiles.slice(0, remaining));
     } else {
       setNewImages(validFiles);
@@ -349,23 +367,23 @@ export const ProjectForm = () => {
   };
 
   const removeNewImage = (index) => {
-    setNewImages(prev => prev.filter((_, i) => i !== index));
+    setNewImages((prev) => prev.filter((_, i) => i !== index));
   };
 
   // ✅ Enhanced form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       showToast("Please fix the errors before submitting", "error");
       return;
     }
-    
+
     setSaving(true);
-    
+
     try {
       const { data } = await createProject(formData);
-      
+
       // Upload images if selected
       if (newImages.length > 0) {
         try {
@@ -375,16 +393,22 @@ export const ProjectForm = () => {
           showToast("Project created with images successfully!", "success");
         } catch (imageError) {
           console.error("Image upload error:", imageError);
-          showToast("Project created but some images failed to upload", "warning");
+          showToast(
+            "Project created but some images failed to upload",
+            "warning"
+          );
         }
       } else {
         showToast("Project created successfully!", "success");
       }
-      
+
       setTimeout(() => navigate(`/@dmin-panel/projects/${data._id}`), 2000);
     } catch (err) {
       console.error("Project creation error:", err);
-      const errorMessage = err.response?.data?.message || err.message || "Failed to create project";
+      const errorMessage =
+        err.response?.data?.message ||
+        err.message ||
+        "Failed to create project";
       showToast(errorMessage, "error");
     } finally {
       setSaving(false);
@@ -402,8 +426,12 @@ export const ProjectForm = () => {
         <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-white/20 overflow-hidden">
           {/* Header */}
           <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-6">
-            <h1 className="text-3xl font-bold text-white">Create New Project</h1>
-            <p className="text-blue-100 mt-2">Fill in the details to create a new project</p>
+            <h1 className="text-3xl font-bold text-white">
+              Create New Project
+            </h1>
+            <p className="text-blue-100 mt-2">
+              Fill in the details to create a new project
+            </p>
           </div>
 
           {/* Form */}
@@ -413,7 +441,7 @@ export const ProjectForm = () => {
               <h2 className="text-xl font-semibold text-slate-800 border-b border-slate-200 pb-2">
                 Basic Information
               </h2>
-              
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <FormField label="Project Title" required error={errors.title}>
                   <Input
@@ -426,7 +454,7 @@ export const ProjectForm = () => {
                     required
                   />
                 </FormField>
-                
+
                 <FormField label="Project Type" required error={errors.type}>
                   <Select
                     name="type"
@@ -453,7 +481,7 @@ export const ProjectForm = () => {
                     placeholder="e.g., 1000 sq ft"
                   />
                 </FormField>
-                
+
                 <FormField label="Location" required error={errors.location}>
                   <Input
                     type="text"
@@ -467,13 +495,12 @@ export const ProjectForm = () => {
                 </FormField>
               </div>
             </div>
-
             {/* Description */}
             <div className="space-y-6">
               <h2 className="text-xl font-semibold text-slate-800 border-b border-slate-200 pb-2">
                 Description
               </h2>
-              
+
               <FormField label="Overview">
                 <TextArea
                   name="overview"
@@ -483,8 +510,12 @@ export const ProjectForm = () => {
                   rows="3"
                 />
               </FormField>
-              
-              <FormField label="Detailed Description" required error={errors.description}>
+
+              <FormField
+                label="Detailed Description"
+                required
+                error={errors.description}
+              >
                 <TextArea
                   name="description"
                   value={formData.description}
@@ -496,13 +527,12 @@ export const ProjectForm = () => {
                 />
               </FormField>
             </div>
-
             {/* Pricing */}
             <div className="space-y-6">
               <h2 className="text-xl font-semibold text-slate-800 border-b border-slate-200 pb-2">
                 Pricing Information
               </h2>
-              
+
               <FormField label="Price List">
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Input
@@ -523,21 +553,28 @@ export const ProjectForm = () => {
                     }
                     className="flex-1"
                   />
-                  <Button type="button" onClick={addPrice} className="sm:w-auto w-full">
+                  <Button
+                    type="button"
+                    onClick={addPrice}
+                    className="sm:w-auto w-full"
+                  >
                     Add Price
                   </Button>
                 </div>
-                
+
                 {formData.priceList.length > 0 && (
                   <div className="mt-4 space-y-2">
                     {formData.priceList.map((p, i) => (
-                      <div key={i} className="flex items-center justify-between bg-slate-50 p-3 rounded-lg">
+                      <div
+                        key={i}
+                        className="flex items-center justify-between bg-slate-50 p-3 rounded-lg"
+                      >
                         <span className="text-sm font-medium text-slate-700">
                           <strong>{p.unitType}:</strong> {p.price}
                         </span>
-                        <Button 
-                          type="button" 
-                          variant="danger" 
+                        <Button
+                          type="button"
+                          variant="danger"
                           size="sm"
                           onClick={() => removePrice(i)}
                         >
@@ -549,13 +586,45 @@ export const ProjectForm = () => {
                 )}
               </FormField>
             </div>
-
+            {/* Regulatory Info */}{" "}
+            <div className="space-y-6">
+              {" "}
+              <h2 className="text-xl font-semibold text-slate-800 border-b border-slate-200 pb-2">
+                {" "}
+                Regulatory Information{" "}
+              </h2>{" "}
+              {/* ✅ New field: RERA Number */}{" "}
+              <FormField label="RERA Number">
+                {" "}
+                <Input
+                  type="text"
+                  name="reraNumber"
+                  value={formData.reraNumber || ""}
+                  onChange={handleChange}
+                  placeholder="Enter RERA registration number"
+                />{" "}
+              </FormField>{" "}
+              <FormField label="Possession Status">
+                {" "}
+                <Select
+                  name="possessionStatus"
+                  value={formData.possessionStatus || ""}
+                  onChange={handleChange}
+                >
+                  {" "}
+                  <option value="">Select possession status</option>{" "}
+                  <option value="Ready to Move">Ready to Move</option>{" "}
+                  <option value="Under Construction">Under Construction</option>{" "}
+                  <option value="Completed">Completed</option>{" "}
+                </Select>{" "}
+              </FormField>{" "}
+            </div>
             {/* Features */}
             <div className="space-y-6">
               <h2 className="text-xl font-semibold text-slate-800 border-b border-slate-200 pb-2">
                 Features & Location
               </h2>
-              
+
               <FormField label="Amenities">
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Input
@@ -565,18 +634,25 @@ export const ProjectForm = () => {
                     placeholder="Enter amenity (e.g., Swimming Pool)"
                     className="flex-1"
                   />
-                  <Button type="button" onClick={addAmenity} className="sm:w-auto w-full">
+                  <Button
+                    type="button"
+                    onClick={addAmenity}
+                    className="sm:w-auto w-full"
+                  >
                     Add Amenity
                   </Button>
                 </div>
-                
+
                 {formData.amenities.length > 0 && (
                   <div className="mt-4 flex flex-wrap gap-2">
                     {formData.amenities.map((a, i) => (
-                      <span key={i} className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                      <span
+                        key={i}
+                        className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                      >
                         {a}
-                        <button 
-                          type="button" 
+                        <button
+                          type="button"
                           onClick={() => removeAmenity(i)}
                           className="text-blue-600 hover:text-blue-800"
                         >
@@ -597,18 +673,25 @@ export const ProjectForm = () => {
                     placeholder="Enter nearby location (e.g., Metro Station)"
                     className="flex-1"
                   />
-                  <Button type="button" onClick={addNearby} className="sm:w-auto w-full">
+                  <Button
+                    type="button"
+                    onClick={addNearby}
+                    className="sm:w-auto w-full"
+                  >
                     Add Location
                   </Button>
                 </div>
-                
+
                 {formData.nearby.length > 0 && (
                   <div className="mt-4 flex flex-wrap gap-2">
                     {formData.nearby.map((n, i) => (
-                      <span key={i} className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+                      <span
+                        key={i}
+                        className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm"
+                      >
                         {n}
-                        <button 
-                          type="button" 
+                        <button
+                          type="button"
                           onClick={() => removeNearby(i)}
                           className="text-green-600 hover:text-green-800"
                         >
@@ -620,13 +703,12 @@ export const ProjectForm = () => {
                 )}
               </FormField>
             </div>
-
             {/* Contact Information */}
             <div className="space-y-6">
               <h2 className="text-xl font-semibold text-slate-800 border-b border-slate-200 pb-2">
                 Contact Information
               </h2>
-              
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <FormField label="Phone Number" error={errors.phone}>
                   <Input
@@ -638,7 +720,7 @@ export const ProjectForm = () => {
                     placeholder="+91 9876543210"
                   />
                 </FormField>
-                
+
                 <FormField label="Email Address" error={errors.email}>
                   <Input
                     type="email"
@@ -651,13 +733,12 @@ export const ProjectForm = () => {
                 </FormField>
               </div>
             </div>
-
             {/* Image Gallery */}
             <div className="space-y-6">
               <h2 className="text-xl font-semibold text-slate-800 border-b border-slate-200 pb-2">
                 Project Gallery
               </h2>
-              
+
               <FormField label={`Upload Images (${newImages.length}/4)`}>
                 <input
                   type="file"
@@ -669,7 +750,7 @@ export const ProjectForm = () => {
                 <p className="text-xs text-slate-500 mt-1">
                   Supported formats: JPEG, PNG, WebP. Max size: 5MB per image.
                 </p>
-                
+
                 {newImages.length > 0 && (
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
                     {newImages.map((file, idx) => (
@@ -692,7 +773,6 @@ export const ProjectForm = () => {
                 )}
               </FormField>
             </div>
-
             {/* Submit Button */}
             <div className="pt-6 border-t border-slate-200">
               <Button
@@ -704,8 +784,20 @@ export const ProjectForm = () => {
                 {saving ? (
                   <span className="flex items-center justify-center gap-2">
                     <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" className="opacity-25" />
-                      <path fill="currentColor" className="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                        fill="none"
+                        className="opacity-25"
+                      />
+                      <path
+                        fill="currentColor"
+                        className="opacity-75"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      />
                     </svg>
                     Creating Project...
                   </span>
@@ -729,7 +821,7 @@ export const ProjectForm = () => {
             opacity: 1;
           }
         }
-        
+
         @keyframes progress {
           from {
             width: 100%;
@@ -738,11 +830,11 @@ export const ProjectForm = () => {
             width: 0%;
           }
         }
-        
+
         .animate-slide-in {
           animation: slide-in 0.3s ease-out;
         }
-        
+
         .animate-progress {
           animation: progress 5s linear;
         }
