@@ -133,7 +133,7 @@ const StatCard = ({ icon: Icon, label, value, gradient = false }) => (
       {label}
     </div>
     <div
-      className={`text-xl font-bold ${
+      className={`text-md md:text-xl lg:text-2xl font-bold ${
         gradient ? "text-white" : "text-slate-900"
       }`}
     >
@@ -376,6 +376,7 @@ const PropertyDetail = () => {
                 icon={Shield}
                 label="RERA Approved"
                 value={property.reraNumber}
+                className="text-sm lg:text-2xl"
               />
             )}
           </div>
