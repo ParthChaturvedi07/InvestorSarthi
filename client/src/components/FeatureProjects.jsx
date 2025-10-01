@@ -24,42 +24,42 @@ const FeaturedProjects = () => {
       type: "Residential",
       description:
         "Eternia is a premium residential apartment project in Tech Zone 4, Greater Noida West, offering spacious 3 & 4 BHK homes with modern design and excellent connectivity.",
-      gallery: ["/images/projects/eternia.jpg"],
+      gallery: ["https://res.cloudinary.com/drtyehnro/image/upload/v1759337948/gallery-6-th_cfdt9e.webp"],
     },
     {
       title: "ELDECO WOW",
       type: "Residential",
       description:
         "A luxury residential apartment project by ELDECO Group in Sector 22D, Yamuna Expressway with premium finishes, podium greens, and modern amenities.",
-      gallery: ["/images/projects/eldeco.jpg"],
+      gallery: ["https://res.cloudinary.com/drtyehnro/image/upload/v1759337493/IMG-20250903-WA0033-1536x1280_emmsli.webp"],
     },
     {
       title: "Gaur New Launch – Sector 22D",
       type: "Residential",
       description:
         "Premium 3 & 4 BHK apartments by Gaurs Group in Sector 22D, Yamuna Expressway, spread across 12 acres with extensive green spaces and luxury amenities.",
-      gallery: ["/images/projects/gaur.jpg"],
+      gallery: ["https://res.cloudinary.com/drtyehnro/image/upload/v1759337693/gallery-3-sm_fpvtz6.webp"],
     },
     {
       title: "Ganga County – Premium Township",
       type: "Plot",
       description:
         "Premium residential township near Garhmukteshwar, Hapur, offering plots from 150–500 sq. yards with modern facilities and proximity to the Ganga River.",
-      gallery: ["/images/projects/ganga.jpg"],
+      gallery: ["https://res.cloudinary.com/drtyehnro/image/upload/v1759337948/gallery-6-th_cfdt9e.webp"],
     },
     {
       title: "Shiv Shakti Vihar",
       type: "Plot",
       description:
         "A plotted township near Jewar International Airport offering freehold plots with strategic location benefits and community amenities.",
-      gallery: ["/images/projects/shivshakti.jpg"],
+      gallery: ["https://res.cloudinary.com/drtyehnro/image/upload/v1759338026/medium_p7j6hw.avif"],
     },
     {
       title: "CRC The Flagship",
       type: "Commercial",
       description:
         "Premium commercial development at Noida Expressway with office spaces, retail shops, and serviced suites managed by an international operator.",
-      gallery: ["/images/projects/crc.jpg"],
+      gallery: ["https://res.cloudinary.com/drtyehnro/image/upload/v1759337613/unnamed_vymvhz.webp"],
     },
   ];
 

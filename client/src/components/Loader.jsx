@@ -35,13 +35,16 @@ const Loader = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center overflow-hidden">
+    <div className="fixed inset-0 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 flex items-center justify-center overflow-hidden">
       {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute inset-0 opacity-20">
         <div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-200 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "1s" }}
+          className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full blur-3xl animate-pulse"
+          style={{ backgroundColor: "#A37E2C" }}
+        ></div>
+        <div
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl animate-pulse"
+          style={{ backgroundColor: "#D4A644", animationDelay: "1s" }}
         ></div>
       </div>
 
@@ -51,12 +54,14 @@ const Loader = () => {
         <div className="relative mb-8">
           {/* Rotating circle border */}
           <div
-            className={`w-40 h-40 rounded-full border-4 border-transparent bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500 p-1 transition-all duration-1000 ${
+            className={`w-40 h-40 rounded-full border-4 border-transparent p-1 transition-all duration-1000 ${
               animationPhase >= 1
                 ? "opacity-100 scale-100 rotate-0"
                 : "opacity-0 scale-0 -rotate-180"
             }`}
             style={{
+              background:
+                "linear-gradient(135deg, #A37E2C 0%, #D4A644 50%, #B8914A 100%)",
               animation:
                 animationPhase >= 4 ? "spin 8s linear infinite" : "none",
             }}
@@ -76,7 +81,7 @@ const Loader = () => {
                       : "none",
                 }}
               >
-                <Home className="w-8 h-8 text-blue-600" />
+                <Home className="w-8 h-8" style={{ color: "#A37E2C" }} />
               </div>
 
               {/* Building Icon */}
@@ -94,7 +99,7 @@ const Loader = () => {
                   animationDelay: "0.2s",
                 }}
               >
-                <Building2 className="w-8 h-8 text-indigo-600" />
+                <Building2 className="w-8 h-8" style={{ color: "#8B6A28" }} />
               </div>
 
               {/* Key Icon */}
@@ -105,7 +110,7 @@ const Loader = () => {
                     : "opacity-0 scale-50 rotate-0"
                 }`}
               >
-                <Key className="w-10 h-10 text-violet-600" />
+                <Key className="w-10 h-10" style={{ color: "#D4A644" }} />
               </div>
             </div>
           </div>
@@ -119,19 +124,26 @@ const Loader = () => {
               : "opacity-0 translate-y-5"
           }`}
         >
-          <h2 className="text-3xl font-bold text-slate-800 mb-2 tracking-wide">
+          <h2
+            className="text-3xl font-bold mb-2 tracking-wide"
+            style={{ color: "#8B6A28" }}
+          >
             Finding Your Dream Home
           </h2>
-          <p className="text-slate-600 text-lg">
+          <p className="text-lg" style={{ color: "#A37E2C" }}>
             Loading premium properties...
           </p>
         </div>
 
         {/* Progress bar */}
-        <div className="w-64 h-2 bg-slate-200 rounded-full overflow-hidden shadow-inner">
+        <div className="w-64 h-2 bg-amber-200 rounded-full overflow-hidden shadow-inner">
           <div
-            className="h-full bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500 rounded-full transition-all duration-300 ease-out"
-            style={{ width: `${progress}%` }}
+            className="h-full rounded-full transition-all duration-300 ease-out"
+            style={{
+              width: `${progress}%`,
+              background:
+                "linear-gradient(90deg, #A37E2C 0%, #D4A644 50%, #B8914A 100%)",
+            }}
           ></div>
         </div>
       </div>
