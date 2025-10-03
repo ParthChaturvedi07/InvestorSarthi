@@ -212,7 +212,7 @@ const Navbar = () => {
         <FaLinkedin
           onClick={() =>
             window.open(
-              "https://www.linkedin.com/",
+              "https://www.linkedin.com/company/109106460/",
               "_blank"
             )
           }
@@ -220,7 +220,7 @@ const Navbar = () => {
         />
         <FaFacebook
           onClick={() =>
-            window.open("https://www.facebook.com/", "_blank")
+            window.open("https://www.facebook.com/profile.php?id=61576256122136", "_blank")
           }
           className="h-7 w-7 cursor-pointer hover:scale-110 transition"
         />

@@ -155,7 +155,7 @@ const Home = () => {
 
         {/* Floating WhatsApp Icon */}
         <a
-          href="https://wa.me/yourwhatsapplink"
+          href="https://www.whatsapp.com/catalog/918587897666/?app_absent=0"
           target="_blank"
           rel="noopener noreferrer"
           className="h-14 w-14 fixed bottom-6 right-6 z-50 bg-black text-white p-3 rounded-full shadow-2xl hover:bg-green-600 transition-all duration-300 hover:scale-110"

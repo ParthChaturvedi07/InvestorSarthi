@@ -71,7 +71,7 @@ const Footer = () => {
           <h3 className="text-base font-semibold mb-4">Follow Us</h3>
           <div className="flex gap-3">
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/profile.php?id=61576256122136"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition"
@@ -87,7 +87,7 @@ const Footer = () => {
               <FaInstagram />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/company/109106460/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition"
