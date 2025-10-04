@@ -21,7 +21,7 @@ import {
   CheckCircle2,
   Image as ImageIcon,
   Maximize2,
-  DollarSign,
+  IndianRupee,
   Info,
   MessageSquare,
   Sparkles,
@@ -358,7 +358,7 @@ const PropertyDetail = () => {
             )}
             {property.priceList?.[0] && (
               <StatCard
-                icon={DollarSign}
+                icon={IndianRupee}
                 label="Starting Price"
                 value={formatPrice(property.priceList[0].price)}
                 gradient
@@ -468,7 +468,7 @@ const PropertyDetail = () => {
                 <SectionCard>
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center">
-                      <DollarSign className="w-5 h-5 text-slate-700" />
+                      <IndianRupee className="w-5 h-5 text-slate-700" />
                     </div>
                     <h2 className="text-2xl font-bold text-slate-900">
                       Pricing

@@ -10,7 +10,7 @@ import {
   CreditCard,
   Eye,
   Users,
-  DollarSign,
+  IndianRupee,
   Globe,
   Award,
 } from "lucide-react";
@@ -64,7 +64,7 @@ const Home = () => {
 
   const stats = [
     { number: "200+", label: "Happy Clients", icon: Users },
-    { number: "₹50Cr+", label: "Properties Sold", icon: DollarSign },
+    { number: "₹50Cr+", label: "Properties Sold", icon: IndianRupee },
     { number: "4", label: "Cities Covered", icon: Globe },
     { number: "98%", label: "Client Satisfaction", icon: Award },
   ];

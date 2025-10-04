@@ -7,7 +7,7 @@ import {
   MapPin, 
   Home, 
   Ruler, 
-  DollarSign, 
+  IndianRupee, 
   Building2, 
   LandPlot, 
   Eye,
@@ -278,7 +278,7 @@ const Properties = () => {
                         )}
                         
                         <div className="flex items-center gap-2 pt-2 border-t border-slate-100">
-                          <DollarSign className="w-4 h-4 text-slate-500" />
+                          <IndianRupee className="w-4 h-4 text-slate-500" />
                           <span className="font-medium text-slate-800">Price:</span>
                           <span className="font-bold text-slate-800">{formatPrice(firstPrice)}</span>
                         </div>
